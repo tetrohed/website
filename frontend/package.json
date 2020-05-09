@@ -7,12 +7,16 @@
   "license": "MIT",
   "scripts": {
     "build:development": "webpack --config webpack.development.config.js",
-    "build:production": "webpack --config webpack.production.config.js",
+    "build:production": "webpack --config webpack.production.config.js && babel server.js --out-dir ./webpackBuild",
     "start:development": "webpack-dev-server --config webpack.development.config.js",
-    "lint": "eslint --ext .ts ./src/**/*"
+    "start:production": "node webpackBuild/server.js",
+    "lint": "eslint --ext .ts ./src/**/*",
+    "test:unit": "jest",
+    "test:coverage": "jest --coverage"
   },
   "private": true,
   "devDependencies": {
+    "@babel/cli": "^7.8.4",
     "@testing-library/dom": "latest",
     "@testing-library/jest-dom": "^5.7.0",
     "@types/jest": "^25.2.1",
@@ -49,6 +53,7 @@
     "@babel/preset-env": "^7.9.6",
     "@babel/preset-typescript": "^7.9.0",
     "autoprefixer": "^9.7.6",
+    "express": "latest",
     "material-components-web": "^6.0.0",
     "postcss-loader": "^3.0.0"
   }

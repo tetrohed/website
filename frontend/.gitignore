@@ -95,3 +95,4 @@ fabric.properties
 tsBuild
 webpackBuild
 node_modules
+coverage
