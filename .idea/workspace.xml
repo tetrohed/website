@@ -2,8 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a1516620-ad20-48e0-97b4-76c9f05f3a83" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.github/workflows/frontend.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/frontend.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/deployment/frontend_service.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/nav.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/router.test.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/router.types.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/deployment/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/deployment/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/deployment/frontend_deployment.yml" beforeDir="false" afterPath="$PROJECT_DIR$/deployment/frontend_deployment.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/.idea/codeStyles/Project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/.idea/codeStyles/Project.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/.prettierrc" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/.prettierrc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/babel.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/babel.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/index.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/comingSoon.test.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/comingSoon.test.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/comingSoon.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/comingSoon.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/testing/render.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/testing/render.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/types/index.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/types/index.d.ts" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -16,6 +31,7 @@
   </component>
   <component name="ProjectId" id="1bfYmYzIDeAd6i99dkMtRarIOfv" />
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
@@ -43,7 +59,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1589024774288</updated>
-      <workItem from="1589024775889" duration="2572000" />
+      <workItem from="1589024775889" duration="13168000" />
     </task>
     <task id="LOCAL-00001" summary="Fix workflow">
       <created>1589027184557</created>

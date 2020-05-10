@@ -1,4 +1,4 @@
-export const comingSoon = (): WebApplication.Node => {
+export const comingSoon: WebApplication.NodeFunction = (): WebApplication.Node => {
   const element = document.createElement('div');
   element.setAttribute('data-testid', 'comingSoon');
 
