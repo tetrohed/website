@@ -8,6 +8,9 @@
     "esModuleInterop": true,
     "downlevelIteration": true,
     "resolveJsonModule": true,
-    "outDir": "tsBuild"
+    "outDir": "tsBuild",
+    "jsx": "preserve",
+    "lib": ["DOM", "ES2016"],
+    "importsNotUsedAsValues": "preserve"
   }
 }

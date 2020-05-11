@@ -5,3 +5,9 @@ declare namespace WebApplication {
 
   type NodeFunction<Props = {}> = (props: Props) => WebApplication.Node;
 }
+
+declare namespace JSX {
+  interface IntrinsicElements {
+    p: {};
+  }
+}

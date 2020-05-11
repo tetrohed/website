@@ -5,8 +5,8 @@ import { app } from './app';
 
 describe('app', function () {
   it('renders without crashing', function () {
-    const { element } = app();
-    const container = render(element);
+    const { element } = app({});
+    const container = render({ element });
     expect(getByTestId(container, 'app')).toBeTruthy();
   });
 });

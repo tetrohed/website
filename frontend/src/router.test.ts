@@ -1,9 +1,5 @@
 /* global MouseEvent */
-import {
-  fireEvent,
-  getByTestId,
-  queryByTestId,
-} from '@testing-library/dom';
+import { fireEvent, getByTestId, queryByTestId } from '@testing-library/dom';
 import { router } from './router';
 import { render } from '../testing/render';
 
@@ -54,7 +50,7 @@ describe('router', () => {
     root.appendChild(content);
   });
   it('routes to first item in routes', () => {
-    const container = render(root);
+    const container = render({ element: root });
 
     router(content, routes);
 
@@ -63,7 +59,7 @@ describe('router', () => {
   });
 
   it('routes to about page after clicking on item', () => {
-    const container = render(root);
+    const container = render({ element: root });
 
     router(content, routes);
 
