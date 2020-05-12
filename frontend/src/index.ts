@@ -3,7 +3,7 @@ import { router } from './router';
 import { comingSoon } from './comingSoon';
 import { home } from './home';
 import { button } from './button';
-
+// TODO rewrite the whole thing with dom library
 const root = document.createElement('div');
 root.className = 'root';
 

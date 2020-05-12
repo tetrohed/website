@@ -2,7 +2,8 @@ const DEFAULT_OPTIONS = {
   scopeVariable: 'React',
   source: 'react',
 };
-
+// TODO TYPESCRIPT the project
+// use babel to transpile
 /**
  * Babel transform plugin for automatically injecting an import to be used as
  * the pragma for the React JSX Transform plugin.
@@ -32,6 +33,8 @@ module.exports = function (babel) {
         }
 
         const { scopeVariable } = getOptions(state);
+        // TODO should simply throw here instead of magically checking
+        // for existence, use case should be clear
         state.hasUndeclaredScopeVariable = !path.scope.hasBinding(
           scopeVariable
         );
@@ -48,13 +51,9 @@ module.exports = function (babel) {
             );
           }
 
-          const importDeclarationSpecifiers = [scopeVariableSpecifier].filter(
-            Boolean
-          );
-
           if (scopeVariableSpecifier) {
             const importDeclaration = t.importDeclaration(
-              importDeclarationSpecifiers,
+              [scopeVariableSpecifier],
               t.stringLiteral(source)
             );
 

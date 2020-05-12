@@ -1,3 +1,4 @@
+// TODO fails on refresh
 export const router = (content: Element, routes: RouteEntryList): void => {
   content.appendChild(routes[0].goTo({}).element);
 

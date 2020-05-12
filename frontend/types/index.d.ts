@@ -1,13 +1,16 @@
+// TODO move to dom library
 declare namespace WebApplication {
   interface Node {
-    element: Element;
+    readonly element: Element;
   }
 
-  type NodeFunction<Props = {}> = (props: Props) => WebApplication.Node;
+  interface NodeFunction<Props = {}> {
+    (props: Props): Node;
+  }
 }
 
 declare namespace JSX {
   interface IntrinsicElements {
-    p: {};
+    p: {}
   }
 }
