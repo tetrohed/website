@@ -1,16 +1,18 @@
 {
-  "name": "dom",
+  "name": "@arminjazi/dom",
   "version": "1.0.0",
-  "main": "dist/index.js",
+  "description": "dom traversal and manipulation library with jsx semantics",
+  "main": "./lib/dom.js",
+  "types": "./lib/index.d.ts",
   "license": "MIT",
   "scripts": {
-    "build": "npm run build:types && npm run build:js",
-    "build:types": "tsc --emitDeclarationOnly",
+    "build": "yarn run build:types && yarn run build:js",
+    "build:types": "tsc --emitDeclarationOnly --project tsconfig.build.json && cp ./src/*.d.ts ./lib/",
     "build:js": "babel src --out-dir lib --extensions \".ts,.tsx\" --source-maps inline",
     "lint": "eslint --ext .ts ./src/**/*"
   },
   "files": [
-    "./lib"
+    "lib/*"
   ],
   "dependencies": {
     "@arminjazi/babel-plugin-import-jsx-pragma": "file:../babel-plugin-import-jsx-pragma"

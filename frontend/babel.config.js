@@ -5,7 +5,7 @@ module.exports = {
   plugins: [
     [
       '@arminjazi/babel-plugin-import-jsx-pragma',
-      { scopeVariable: 'dom', source: './dom' },
+      { scopeVariable: 'dom', source: '@arminjazi/dom' },
     ],
     ['@babel/plugin-transform-react-jsx', { pragma: 'dom.create' }],
   ],

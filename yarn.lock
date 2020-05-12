@@ -5,6 +5,11 @@
 "@arminjazi/babel-plugin-import-jsx-pragma@file:packages/babel-plugin-import-jsx-pragma":
   version "1.0.0"
 
+"@arminjazi/dom@file:packages/dom":
+  version "1.0.0"
+  dependencies:
+    "@arminjazi/babel-plugin-import-jsx-pragma" "file:../../Library/Caches/Yarn/v4/npm-@arminjazi-dom-1.0.0-27f9444e-c380-4532-9a34-177a386657c3-1589300600260/node_modules/@arminjazi/babel-plugin-import-jsx-pragma"
+
 "@babel/cli@^7.8.4":
   version "7.8.4"
   resolved "https://registry.yarnpkg.com/@babel/cli/-/cli-7.8.4.tgz#505fb053721a98777b2b175323ea4f090b7d3c1c"

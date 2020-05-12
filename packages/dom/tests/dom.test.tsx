@@ -1,5 +1,5 @@
 import { render } from '@utils/render';
-import { prettyDOM, getByTestId, fireEvent } from '@testing-library/dom';
+import { getByTestId, fireEvent } from '@testing-library/dom';
 
 describe('dom', () => {
   it('renders jsx with div and text content', () => {
@@ -115,8 +115,6 @@ describe('dom', () => {
     const container = render(
       <FunctionalComponent>{items.map((i) => i())}</FunctionalComponent>
     );
-
-    console.log(prettyDOM(container));
 
     expect(container).toBeTruthy();
   });

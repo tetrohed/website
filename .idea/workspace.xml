@@ -2,22 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a1516620-ad20-48e0-97b4-76c9f05f3a83" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/packages/dom/.eslintignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/dom/.eslintrc.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/dom/.idea/dom.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/dom/.prettierrc" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/.prettierrc" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/.prettierrc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/babel.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/babel.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/dom.test.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/dom.test.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/dom.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/dom.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/router.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/router.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/types/index.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/types/index.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/babel-plugin-import-jsx-pragma/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/babel-plugin-import-jsx-pragma/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/dom.test.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/dom.ts" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -134,7 +121,7 @@
       <workItem from="1589024775889" duration="13168000" />
       <workItem from="1589199554490" duration="4568000" />
       <workItem from="1589211647343" duration="1721000" />
-      <workItem from="1589271976428" duration="1651000" />
+      <workItem from="1589271976428" duration="2167000" />
     </task>
     <task id="LOCAL-00001" summary="Fix workflow">
       <created>1589027184557</created>
