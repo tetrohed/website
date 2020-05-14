@@ -1,3 +1,5 @@
+import { State } from './State';
+
 export { Node, NodeComponent } from './Node';
 
 export as namespace dom;
@@ -15,6 +17,7 @@ declare global {
 
     interface Attribute {
       class?: string;
+      states?: State[];
     }
 
     type AttributeKey = keyof Attribute;
@@ -22,6 +25,7 @@ declare global {
     type AttributeMap = {
       [key in AttributeKey]: any;
     };
+
 
     interface IntrinsicPropTypes extends EventListenerList, Attribute {}
 

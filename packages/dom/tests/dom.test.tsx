@@ -1,9 +1,15 @@
-import { render } from '@utils/render';
 import { getByTestId, fireEvent } from '@testing-library/dom';
+import '@testing-library/jest-dom/extend-expect';
+import { render as domRender } from '../src/render';
+import StateFactory, { State } from '../src/State';
+
+type PropsWithState = {
+  states: State[]
+}
 
 describe('dom', () => {
   it('renders jsx with div and text content', () => {
-    const container = render(<p> Hello, world </p>);
+    const container = domRender(<p> Hello, world </p>);
     expect(container).toHaveTextContent('Hello, world');
   });
 
@@ -11,7 +17,7 @@ describe('dom', () => {
     const FunctionalComponent = () => {
       return <div />;
     };
-    const container = render(<FunctionalComponent />);
+    const container = domRender(<FunctionalComponent />);
 
     expect(container).toBeTruthy();
   });
@@ -20,7 +26,7 @@ describe('dom', () => {
     const FunctionalComponent = () => {
       return <div> some text</div>;
     };
-    const container = render(<FunctionalComponent />);
+    const container = domRender(<FunctionalComponent />);
 
     expect(container).toHaveTextContent('some text');
   });
@@ -33,7 +39,7 @@ describe('dom', () => {
         </div>
       );
     };
-    const container = render(<FunctionalComponent />);
+    const container = domRender(<FunctionalComponent />);
 
     expect(container).toHaveTextContent('some text');
   });
@@ -45,7 +51,7 @@ describe('dom', () => {
     const func = (condition: boolean) => {
       return condition ? 3 : 0;
     };
-    const container = render(
+    const container = domRender(
       <FunctionalComponent> {func(true)} </FunctionalComponent>
     );
 
@@ -57,7 +63,7 @@ describe('dom', () => {
       return <div />;
     };
 
-    const container = render(
+    const container = domRender(
       <FunctionalComponent> {true} </FunctionalComponent>
     );
 
@@ -69,7 +75,7 @@ describe('dom', () => {
       return <div />;
     };
 
-    const container = render(
+    const container = domRender(
       <FunctionalComponent> sometext </FunctionalComponent>
     );
 
@@ -81,7 +87,7 @@ describe('dom', () => {
       return <div />;
     };
 
-    const container = render(
+    const container = domRender(
       <FunctionalComponent>
         {{ key: 'value', anotherKey: 'value' }}
       </FunctionalComponent>
@@ -95,7 +101,7 @@ describe('dom', () => {
       return <div />;
     };
 
-    const container = render(
+    const container = domRender(
       <FunctionalComponent>{['item1', 'item2']}</FunctionalComponent>
     );
 
@@ -112,7 +118,7 @@ describe('dom', () => {
       () => <FunctionalComponent />,
     ];
 
-    const container = render(
+    const container = domRender(
       <FunctionalComponent>{items.map((i) => i())}</FunctionalComponent>
     );
 
@@ -128,19 +134,19 @@ describe('dom', () => {
       return <div>{dataTestId}</div>;
     };
 
-    const container = render(<FunctionalComponent data-testid="someid" />);
+    const container = domRender(<FunctionalComponent data-testid="someid" />);
 
     expect(container).toHaveTextContent('someid');
   });
 
   it('renders jsx with div with data-testid attribute', () => {
-    const container = render(<div data-testid="someid" />);
+    const container = domRender(<div data-testid="someid" />);
 
     expect(getByTestId(container, 'someid')).toBeTruthy();
   });
 
   it('renders jsx with div with multiple attributes', () => {
-    const container = render(
+    const container = domRender(
       <div data-testid="someid" data-another="someOtherId" />
     );
 
@@ -151,7 +157,7 @@ describe('dom', () => {
   });
 
   it('renders jsx with div with classNames', () => {
-    const container = render(
+    const container = domRender(
       <div data-testid="someid" class="someClassName someOtherClassName" />
     );
 
@@ -162,7 +168,7 @@ describe('dom', () => {
   it('renders jsx with div with onClick listener', () => {
     const handleClick = jest.fn<void, [HTMLElement, MouseEvent]>();
 
-    const container = render(<div data-testid="someid" click={handleClick} />);
+    const container = domRender(<div data-testid="someid" click={handleClick} />);
 
     fireEvent(
       getByTestId(container, 'someid'),
@@ -174,4 +180,71 @@ describe('dom', () => {
 
     expect(handleClick).toHaveBeenCalledTimes(1);
   });
+
+  it('renders with state', () => {
+    const FunctionalComponent = ({ states }: PropsWithState) => {
+      const [clickState] = states;
+      const handleClick = () => {
+        clickState.set(2);
+      };
+
+      return (
+        <div data-testid="someid" click={handleClick}>
+          {clickState.get()}
+        </div>
+      );
+    };
+
+    const state = new StateFactory().create();
+
+    const container = domRender(<FunctionalComponent states={[state]} />);
+
+    fireEvent(
+      getByTestId(container, 'someid'),
+      new MouseEvent('click', {
+        bubbles: true,
+        cancelable: true,
+      })
+    );
+
+    expect(container).toHaveTextContent('2');
+  });
+
+  it('renders with multiple states', () => {
+    const FunctionalComponent = ({ states }: PropsWithState) => {
+      const [clickState, irrelevantState] = states;
+      const handleClick = () => {
+        clickState.set(2);
+      };
+
+      return (
+        <div data-testid="someid" click={handleClick}>
+          {clickState.get()}
+          {irrelevantState.get()}
+        </div>
+      );
+    };
+
+    const state1 = new StateFactory().create();
+    const state2 = new StateFactory().create();
+
+    const container = domRender(<FunctionalComponent states={[state1, state2]} />);
+
+    expect(container).toHaveTextContent('00');
+
+    fireEvent(
+      getByTestId(container, 'someid'),
+      new MouseEvent('click', {
+        bubbles: true,
+        cancelable: true,
+      })
+    );
+
+    expect(container).toHaveTextContent('20');
+  });
+  // TODO test multiple functional components
+  // TODO test multiple functional components as children
+  // TODO unmount then update ( async stuff) (removing listener)
+  // TODO unmount then update ( async stuff) (removing listener)
+  // TODO reconciliation
 });

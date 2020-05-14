@@ -1,17 +1,33 @@
 import { Node } from './Node';
+import { StateListener } from './State';
+import Children from './Children';
 
-export default class HtmlNode implements Node {
+export default class HtmlNode implements Node, StateListener {
   constructor(
     tag: keyof JSX.IntrinsicElements,
-    fragments: DocumentFragment,
+    children: Children,
     attributes: JSX.AttributeMap
   ) {
-    this.element = document.createElement(tag);
-    this.element.appendChild(fragments);
-    if (attributes) this.addAttributes(this.element, attributes);
+    this.tag_ = tag;
+    this.children_ = children;
+    this.attributes_ = attributes;
   }
 
-  private addAttributes(element: HTMLElement, attributes: JSX.AttributeMap) {
+  update(): void {
+    this.element_ = document.createElement(this.tag_);
+    this.element_.appendChild(this.children_.asDocumentFragment());
+
+    if (this.attributes_) {
+      this.addAttributes(this.element_, this.attributes_);
+    }
+  }
+
+  render(): Element {
+    this.update();
+    return this.element_!;
+  }
+
+  private addAttributes(element: Element, attributes: JSX.AttributeMap) {
     const keys = Object.keys(attributes);
     keys.forEach((key) => {
       const k = key as JSX.AttributeKey;
@@ -21,5 +37,8 @@ export default class HtmlNode implements Node {
     });
   }
 
-  readonly element: HTMLElement;
+  private readonly attributes_?: JSX.AttributeMap;
+  private readonly tag_: keyof JSX.IntrinsicElements;
+  private readonly children_: Children;
+  private element_?: Element;
 }
