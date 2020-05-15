@@ -1,25 +1,24 @@
-import FunctionalNode from './FunctionalNode';
-import HtmlNode from './HtmlNode';
-import { NodeComponent, Node } from './Node';
+import FunctionView from './FunctionView';
+import HtmlView from './HtmlView';
+import { ViewComponent, View } from './View';
 import Children, { ChildrenTypes } from './Children';
 
-type Tag = keyof JSX.IntrinsicElements | NodeComponent;
+type Tag = keyof JSX.IntrinsicElements | ViewComponent;
 
 const create = (
   tag: Tag,
-  attributes: JSX.AttributeMap,
+  attributes: JSX.StateFullIntrinsicPropTypes,
   ...children: ChildrenTypes[]
-): Node => {
+): View => {
   if (typeof tag === 'function') {
     if (attributes?.states) {
       const { states, ...other } = attributes;
-      return new FunctionalNode(tag, new Children(children), other, states);
-    }
-    else {
-      return new FunctionalNode(tag, new Children(children), attributes, []);
+      return new FunctionView(tag, new Children(children), other, states);
+    } else {
+      return new FunctionView(tag, new Children(children), attributes, []);
     }
   }
-  return new HtmlNode(tag, new Children(children), attributes);
+  return new HtmlView(tag, new Children(children), attributes);
 };
 
 export default { create };

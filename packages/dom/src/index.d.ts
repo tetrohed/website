@@ -1,14 +1,15 @@
 import { State } from './State';
+import dom from './dom';
 
-export { Node, NodeComponent } from './Node';
+export { View, ViewComponent } from './View';
+export { State };
 
-export as namespace dom;
+export default dom;
 
 declare global {
   namespace JSX {
     type EventKey = keyof HTMLElementEventMap;
-
-    type EventListenerList = {
+    type EventListenerMap = {
       [key in EventKey]?: (
         element: HTMLElement,
         event: HTMLElementEventMap[key]
@@ -17,17 +18,19 @@ declare global {
 
     interface Attribute {
       class?: string;
-      states?: State[];
     }
 
-    type AttributeKey = keyof Attribute;
+    type AttributeKey = keyof Attribute & EventKey;
 
     type AttributeMap = {
-      [key in AttributeKey]: any;
+      [key in AttributeKey]: string;
     };
 
+    interface IntrinsicPropTypes extends EventListenerMap, Attribute {}
 
-    interface IntrinsicPropTypes extends EventListenerList, Attribute {}
+    interface StateFullIntrinsicPropTypes extends IntrinsicPropTypes {
+      states?: State[];
+    }
 
     interface IntrinsicElements {
       p: IntrinsicPropTypes;

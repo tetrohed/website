@@ -1,5 +1,5 @@
 import { getByTestId } from '@testing-library/dom';
-import { render } from '../testing/render';
+import { render } from '@utils/render';
 
 import { App } from './App';
 

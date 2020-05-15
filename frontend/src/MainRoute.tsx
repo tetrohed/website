@@ -1,12 +1,12 @@
 import { App } from './App';
-import { RouteEntryList, router } from './router';
 import { ComingSoon } from './ComingSoon';
 import { Home } from './Home';
 import { Navigation, NavigationItem } from './Navigation';
-import { NodeComponent, Node } from '@arminjazi/dom';
+import { ViewComponent, View } from '@arminjazi/dom';
+import { RouteEntryList } from './Router.test';
 
-export const MainRoute: NodeComponent = (): Node => {
-  const content: Node = <div data-testid="content" />;
+export const MainRoute: ViewComponent = (): View => {
+  const content: View = <div data-testid="content" />;
 
   const routes: RouteEntryList = [
     {
@@ -23,9 +23,9 @@ export const MainRoute: NodeComponent = (): Node => {
     },
   ];
 
-  const { setRoute } = router(content.element, routes);
+  const { setRoute } = router(content.render(), routes);
 
-  const handleClick = (navItem: NavigationItem) => {
+  const handleClick = (navItem: NavigationItem): void => {
     switch (navItem) {
       case NavigationItem.App:
         setRoute(routes[1]);
@@ -41,8 +41,8 @@ export const MainRoute: NodeComponent = (): Node => {
 
   return (
     <div>
-      <Navigation onClick={handleClick}/>
-      {content.element}
+      <Navigation onClick={handleClick} />
+      {content.render()}
     </div>
   );
 };

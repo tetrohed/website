@@ -1,33 +1,32 @@
-import { Node } from './Node';
-import { StateListener } from './State';
+import { View } from './View';
 import Children from './Children';
 
-export default class HtmlNode implements Node, StateListener {
+export default class HtmlView implements View {
   constructor(
     tag: keyof JSX.IntrinsicElements,
     children: Children,
-    attributes: JSX.AttributeMap
+    attributes: JSX.Attribute
   ) {
     this.tag_ = tag;
     this.children_ = children;
     this.attributes_ = attributes;
   }
 
-  update(): void {
+  render(): Element {
     this.element_ = document.createElement(this.tag_);
+
     this.element_.appendChild(this.children_.asDocumentFragment());
 
     if (this.attributes_) {
       this.addAttributes(this.element_, this.attributes_);
     }
+    return this.element_;
   }
 
-  render(): Element {
-    this.update();
-    return this.element_!;
-  }
-
-  private addAttributes(element: Element, attributes: JSX.AttributeMap) {
+  private addAttributes(
+    element: HTMLElement,
+    attributes: JSX.AttributeMap
+  ): void {
     const keys = Object.keys(attributes);
     keys.forEach((key) => {
       const k = key as JSX.AttributeKey;
@@ -37,8 +36,11 @@ export default class HtmlNode implements Node, StateListener {
     });
   }
 
-  private readonly attributes_?: JSX.AttributeMap;
+  private readonly attributes_?: JSX.Attribute;
+
   private readonly tag_: keyof JSX.IntrinsicElements;
+
   private readonly children_: Children;
-  private element_?: Element;
+
+  private element_?: HTMLElement;
 }

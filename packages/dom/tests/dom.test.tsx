@@ -1,11 +1,12 @@
 import { getByTestId, fireEvent } from '@testing-library/dom';
 import '@testing-library/jest-dom/extend-expect';
 import { render as domRender } from '../src/render';
-import StateFactory, { State } from '../src/State';
+import StateFactory, { State, StateListener } from '../src/State';
+import { View } from '../src';
 
 type PropsWithState = {
-  states: State[]
-}
+  states: State[];
+};
 
 describe('dom', () => {
   it('renders jsx with div and text content', () => {
@@ -14,7 +15,7 @@ describe('dom', () => {
   });
 
   it('renders jsx with functional component', () => {
-    const FunctionalComponent = () => {
+    const FunctionalComponent = (): View => {
       return <div />;
     };
     const container = domRender(<FunctionalComponent />);
@@ -23,7 +24,7 @@ describe('dom', () => {
   });
 
   it('renders jsx with functional component with text', () => {
-    const FunctionalComponent = () => {
+    const FunctionalComponent = (): View => {
       return <div> some text</div>;
     };
     const container = domRender(<FunctionalComponent />);
@@ -31,8 +32,19 @@ describe('dom', () => {
     expect(container).toHaveTextContent('some text');
   });
 
+  it('renders jsx exactly one time', () => {
+    let times = 0;
+    const FunctionalComponent = (): View => {
+      times += 1;
+      return <div> some text</div>;
+    };
+    domRender(<FunctionalComponent />);
+
+    expect(times).toEqual(1);
+  });
+
   it('renders jsx with functional component and children', () => {
-    const FunctionalComponent = () => {
+    const FunctionalComponent = (): View => {
       return (
         <div>
           <p>some text</p>
@@ -45,10 +57,10 @@ describe('dom', () => {
   });
 
   it('renders jsx with functional component and children as number', () => {
-    const FunctionalComponent = () => {
+    const FunctionalComponent = (): View => {
       return <div />;
     };
-    const func = (condition: boolean) => {
+    const func = (condition: boolean): number => {
       return condition ? 3 : 0;
     };
     const container = domRender(
@@ -59,7 +71,7 @@ describe('dom', () => {
   });
 
   it('renders jsx with functional component and boolean as children', () => {
-    const FunctionalComponent = () => {
+    const FunctionalComponent = (): View => {
       return <div />;
     };
 
@@ -71,7 +83,7 @@ describe('dom', () => {
   });
 
   it('renders jsx with functional component and text as children', () => {
-    const FunctionalComponent = () => {
+    const FunctionalComponent = (): View => {
       return <div />;
     };
 
@@ -83,7 +95,7 @@ describe('dom', () => {
   });
 
   it('renders jsx with functional component and object as children', () => {
-    const FunctionalComponent = () => {
+    const FunctionalComponent = (): View => {
       return <div />;
     };
 
@@ -97,7 +109,7 @@ describe('dom', () => {
   });
 
   it('renders jsx with functional component and array as children', () => {
-    const FunctionalComponent = () => {
+    const FunctionalComponent = (): View => {
       return <div />;
     };
 
@@ -109,13 +121,13 @@ describe('dom', () => {
   });
 
   it('renders jsx with functional component and array of functional component as children', () => {
-    const FunctionalComponent = () => {
+    const FunctionalComponent = (): View => {
       return <div />;
     };
 
     const items = [
-      () => <FunctionalComponent />,
-      () => <FunctionalComponent />,
+      (): View => <FunctionalComponent />,
+      (): View => <FunctionalComponent />,
     ];
 
     const container = domRender(
@@ -130,7 +142,7 @@ describe('dom', () => {
       'data-testid': dataTestId,
     }: {
       'data-testid': string;
-    }) => {
+    }): View => {
       return <div>{dataTestId}</div>;
     };
 
@@ -168,7 +180,9 @@ describe('dom', () => {
   it('renders jsx with div with onClick listener', () => {
     const handleClick = jest.fn<void, [HTMLElement, MouseEvent]>();
 
-    const container = domRender(<div data-testid="someid" click={handleClick} />);
+    const container = domRender(
+      <div data-testid="someid" click={handleClick} />
+    );
 
     fireEvent(
       getByTestId(container, 'someid'),
@@ -181,15 +195,24 @@ describe('dom', () => {
     expect(handleClick).toHaveBeenCalledTimes(1);
   });
 
-  it('renders with state', () => {
-    const FunctionalComponent = ({ states }: PropsWithState) => {
+  it('renders with changing state', () => {
+    const FunctionalComponent = (
+      { states }: PropsWithState,
+      listener: StateListener
+    ): View => {
       const [clickState] = states;
-      const handleClick = () => {
-        clickState.set(2);
+      clickState.addListener(listener);
+
+      const handleClick = (): void => {
+        clickState.set(clickState.get() + 1);
       };
 
       return (
-        <div data-testid="someid" click={handleClick}>
+        <div
+          data-testid="someid"
+          click={handleClick}
+          aria-label={clickState.get()}
+        >
           {clickState.get()}
         </div>
       );
@@ -207,13 +230,27 @@ describe('dom', () => {
       })
     );
 
+    expect(container).toHaveTextContent('1');
+
+    fireEvent(
+      getByTestId(container, 'someid'),
+      new MouseEvent('click', {
+        bubbles: true,
+        cancelable: true,
+      })
+    );
     expect(container).toHaveTextContent('2');
   });
 
   it('renders with multiple states', () => {
-    const FunctionalComponent = ({ states }: PropsWithState) => {
+    const FunctionalComponent = (
+      { states }: PropsWithState,
+      listener: StateListener
+    ): View => {
       const [clickState, irrelevantState] = states;
-      const handleClick = () => {
+      states.forEach((s) => s.addListener(listener));
+
+      const handleClick = (): void => {
         clickState.set(2);
       };
 
@@ -228,7 +265,9 @@ describe('dom', () => {
     const state1 = new StateFactory().create();
     const state2 = new StateFactory().create();
 
-    const container = domRender(<FunctionalComponent states={[state1, state2]} />);
+    const container = domRender(
+      <FunctionalComponent states={[state1, state2]} />
+    );
 
     expect(container).toHaveTextContent('00');
 
@@ -242,8 +281,218 @@ describe('dom', () => {
 
     expect(container).toHaveTextContent('20');
   });
-  // TODO test multiple functional components
-  // TODO test multiple functional components as children
+
+  it('renders parent with child after state change', () => {
+    const Child = (
+      { states }: PropsWithState,
+      listener: StateListener
+    ): View => {
+      const [clickState] = states;
+      clickState.addListener(listener);
+
+      const handleClick = (): void => {
+        clickState.set(2);
+      };
+
+      return (
+        <div data-testid="someid" click={handleClick}>
+          {'childState' + clickState.get()}
+        </div>
+      );
+    };
+
+    const Parent = (
+      { states }: PropsWithState,
+      listener: StateListener
+    ): View => {
+      const [clickState] = states;
+      clickState.addListener(listener);
+
+      return <Child states={states}>{'parentState' + clickState.get()}</Child>;
+    };
+
+    const state = new StateFactory().create();
+
+    const container = domRender(<Parent states={[state]} />);
+
+    expect(container).toHaveTextContent('childState0');
+    expect(container).toHaveTextContent('parentState0');
+
+    fireEvent(
+      getByTestId(container, 'someid'),
+      new MouseEvent('click', {
+        bubbles: true,
+        cancelable: true,
+      })
+    );
+
+    expect(container).toHaveTextContent('childState2');
+    expect(container).toHaveTextContent('parentState2');
+  });
+
+  it('renders state updates in siblings', () => {
+    const FunctionalComponent = (
+      { states }: PropsWithState,
+      listener: StateListener
+    ): View => {
+      const [clickState] = states;
+      clickState.addListener(listener);
+
+      const handleClick = (): void => {
+        clickState.set(2);
+      };
+
+      return (
+        <div data-testid="someid" click={handleClick}>
+          {clickState.get()}
+        </div>
+      );
+    };
+
+    const AnotherComponents = (
+      { states }: PropsWithState,
+      listener: StateListener
+    ): View => {
+      const [clickState] = states;
+      clickState.addListener(listener);
+
+      const handleClick = (): void => {
+        clickState.set(3);
+      };
+
+      return (
+        <div data-testid="anotherId" click={handleClick}>
+          {clickState.get()}
+        </div>
+      );
+    };
+
+    const state = new StateFactory().create();
+
+    const container = domRender(
+      <div>
+        <FunctionalComponent states={[state]} />
+        <AnotherComponents states={[state]} />
+      </div>
+    );
+
+    expect(getByTestId(container, 'anotherId')).toHaveTextContent('0');
+
+    fireEvent(
+      getByTestId(container, 'someid'),
+      new MouseEvent('click', {
+        bubbles: true,
+        cancelable: true,
+      })
+    );
+
+    expect(getByTestId(container, 'anotherId')).toHaveTextContent('2');
+
+    fireEvent(
+      getByTestId(container, 'anotherId'),
+      new MouseEvent('click', {
+        bubbles: true,
+        cancelable: true,
+      })
+    );
+
+    expect(getByTestId(container, 'anotherId')).toHaveTextContent('3');
+    expect(getByTestId(container, 'anotherId')).not.toHaveTextContent('2');
+    expect(getByTestId(container, 'someid')).toHaveTextContent('3');
+    expect(getByTestId(container, 'someid')).not.toHaveTextContent('2');
+  });
+
+  it('rerenders child after state change, does not rerender stateless parent', () => {
+    let childRenderTimes = 0;
+    const Child = (
+      { states }: PropsWithState,
+      listener: StateListener
+    ): void => {
+      childRenderTimes += 1;
+      const [clickState] = states;
+      clickState.addListener(listener);
+      const handleClick = (): void => {
+        clickState.set(2);
+      };
+
+      return (
+        <div data-testid="someid" click={handleClick}>
+          {clickState.get()}
+        </div>
+      );
+    };
+
+    let parentRenderTimes = 0;
+    const Parent = ({ states }: PropsWithState): View => {
+      parentRenderTimes += 1;
+      return <Child states={states} />;
+    };
+
+    const state = new StateFactory().create();
+
+    const container = domRender(<Parent states={[state]} />);
+
+    fireEvent(
+      getByTestId(container, 'someid'),
+      new MouseEvent('click', {
+        bubbles: true,
+        cancelable: true,
+      })
+    );
+
+    expect(parentRenderTimes).toEqual(1);
+    expect(childRenderTimes).toEqual(2);
+  });
+
+  it('renders parent with child and grandchildren after state change', () => {
+    let grandChildRenderTimes = 0;
+    const GrandChild = (
+      { states }: PropsWithState,
+      listener: StateListener
+    ): View => {
+      grandChildRenderTimes += 1;
+      const [clickState] = states;
+      clickState.addListener(listener);
+      const handleClick = (): void => {
+        clickState.set(2);
+      };
+
+      return (
+        <div data-testid="someid" click={handleClick}>
+          {clickState.get()}
+        </div>
+      );
+    };
+
+    let childRenderTimes = 0;
+    const Child = ({ states }: PropsWithState): View => {
+      childRenderTimes += 1;
+      return <GrandChild states={states} />;
+    };
+
+    let parentRenderTimes = 0;
+    const Parent = ({ states }: PropsWithState): View => {
+      parentRenderTimes += 1;
+      return <Child states={states} />;
+    };
+
+    const state = new StateFactory().create();
+
+    const container = domRender(<Parent states={[state]} />);
+
+    fireEvent(
+      getByTestId(container, 'someid'),
+      new MouseEvent('click', {
+        bubbles: true,
+        cancelable: true,
+      })
+    );
+
+    expect(parentRenderTimes).toEqual(1);
+    expect(childRenderTimes).toEqual(1);
+    expect(grandChildRenderTimes).toEqual(2);
+  });
+
   // TODO unmount then update ( async stuff) (removing listener)
   // TODO unmount then update ( async stuff) (removing listener)
   // TODO reconciliation

@@ -10,7 +10,7 @@
     "build:production": "webpack --config webpack.production.config.js && babel server.js --out-dir ./webpackBuild",
     "start:development": "webpack-dev-server --config webpack.development.config.js",
     "start:production": "node webpackBuild/server.js",
-    "lint": "eslint --ext .ts ./src/**/*",
+    "lint": "eslint . --ext .ts,.tsx",
     "test:unit": "jest",
     "test:coverage": "jest --coverage"
   },

@@ -1,22 +1,27 @@
-import {
-  fireEvent,
-  getByTestId,
-  queryByTestId,
-  prettyDOM,
-} from '@testing-library/dom';
-import { RouteEntryList, router } from './router';
+import { queryByTestId } from '@testing-library/dom';
 import { render } from '@utils/render';
-import { NodeComponent, Node } from '@arminjazi/dom';
+import { ViewComponent, View } from '@arminjazi/dom';
 
-const Info: NodeComponent = (): Node => {
+export interface RouteEntry {
+  goTo: View;
+  path: string;
+}
+export type RouteEntryList = Array<RouteEntry>;
+
+export type RouteState = {
+  current: RouteEntry;
+  setRoute: (route: RouteEntry) => void;
+};
+
+const Info: ViewComponent = (): View => {
   return <div data-testid="info" />;
 };
 
-const About: NodeComponent = (): Node => {
+const About: ViewComponent = (): View => {
   return <div data-testid="about" />;
 };
 
-const Root: NodeComponent = (): Node => {
+const Root: ViewComponent = (): View => {
   return <div data-testid="root" />;
 };
 
@@ -39,8 +44,8 @@ type Props = {
   routes: RouteEntryList;
 };
 
-const Router: NodeComponent<Props> = ({ routes }: Props): Node => {
-  let current = routes.find((r) => r.path == '/');
+const Router: ViewComponent<Props> = ({ routes }: Props): View => {
+  const current = routes.find((r) => r.path === '/');
 
   if (!current) return <div data-testid="default-root" />;
 
@@ -63,7 +68,7 @@ describe('router', () => {
   });
 
   it('routes to about page', () => {
-    const router = <Router routes={routes}/>;
+    const router = <Router routes={routes} />;
     const container = render(router);
 
     expect(queryByTestId(container, 'root')).toBeTruthy();

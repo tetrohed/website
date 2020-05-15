@@ -9,28 +9,22 @@ export interface StateListener {
 }
 
 export class StateImp implements State {
-  constructor() {}
-
   public addListener(listener: StateListener): void {
-    this.listener_ = listener;
+    this.listener_.push(listener);
   }
 
   public set(to: number): void {
     this.state_ = to;
-    this.listener_!.update();
+    this.listener_.forEach((l) => l.update());
   }
+
   public get(): number {
     return this.state_;
   }
 
-  public toJSON() {
-    return {
-      state: this.state_,
-    };
-  }
+  private state_ = 0;
 
-  private state_: number = 0;
-  private listener_?: StateListener;
+  private listener_: StateListener[] = [];
 }
 
 export default class StateFactory {

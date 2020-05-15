@@ -1,10 +1,13 @@
-import { NodeComponent, Node } from '@arminjazi/dom';
+import { View, ViewComponent } from '@arminjazi/dom';
 
 export type Props = {
   textContent: string;
   onClick?: () => void;
 };
-export const Button: NodeComponent<Props> = ({ textContent, onClick }: Props): Node => {
+export const Button: ViewComponent<Props> = ({
+  textContent,
+  onClick,
+}: Props): View => {
   return (
     <div
       data-testid={`button-${textContent}`}

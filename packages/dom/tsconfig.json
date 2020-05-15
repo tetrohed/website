@@ -10,7 +10,7 @@
     "resolveJsonModule": true,
     "outDir": "lib",
     "jsx": "preserve",
-    "lib": ["DOM", "ES2016"],
+    "lib": ["ES2016", "dom"],
     "declaration": true,
     "baseUrl": "./",
     "paths": {

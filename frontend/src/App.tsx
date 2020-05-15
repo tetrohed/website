@@ -1,8 +1,8 @@
 import './app.css';
 
-import { NodeComponent, Node } from '@arminjazi/dom';
+import { ViewComponent, View } from '@arminjazi/dom';
 
-export const App: NodeComponent = (): Node => {
+export const App: ViewComponent = (): View => {
   return (
     <div class="app" data-testid="app">
       <p> Armin G Jazi </p>

@@ -1,11 +1,11 @@
-import HtmlNode from './HtmlNode';
-import FunctionalNode from './FunctionalNode';
+import HtmlView from './HtmlView';
+import FunctionView from './FunctionView';
 
 export type ChildrenTypes =
   | HTMLElement
   | Array<ChildrenTypes>
-  | HtmlNode
-  | FunctionalNode
+  | HtmlView
+  | FunctionView
   | string
   | number
   | boolean;
@@ -14,6 +14,12 @@ export default class Children {
   constructor(children: ChildrenTypes[]) {
     this.children_ = children;
   }
+
+  asText = (): string => {
+    const element = document.createElement('div');
+    element.appendChild(this.asDocumentFragment());
+    return element.innerHTML;
+  };
 
   asDocumentFragment = (): DocumentFragment => {
     return this.getFragment(this.children_);
@@ -33,7 +39,7 @@ export default class Children {
       } else if (child instanceof Array) {
         const children = this.getFragment(child);
         fragments.appendChild(children);
-      } else if (child instanceof HtmlNode || child instanceof FunctionalNode) {
+      } else if (child instanceof HtmlView || child instanceof FunctionView) {
         fragments.appendChild(child.render());
       } else if (typeof child === 'object') {
         // TODO this might fail, if the object is not serializable
