@@ -11,10 +11,6 @@
     "outDir": "lib",
     "jsx": "preserve",
     "lib": ["ES2016", "dom"],
-    "declaration": true,
-    "baseUrl": "./",
-    "paths": {
-      "@utils/*": ["../../utils/*"]
-    }
+    "declaration": true
   }
 }

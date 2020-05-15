@@ -1,17 +1,8 @@
 import { queryByTestId } from '@testing-library/dom';
-import { render } from '@utils/render';
-import { ViewComponent, View } from '@arminjazi/dom';
+import { ViewComponent, View, SimpleState } from '@arminjazi/dom';
 
-export interface RouteEntry {
-  goTo: View;
-  path: string;
-}
-export type RouteEntryList = Array<RouteEntry>;
-
-export type RouteState = {
-  current: RouteEntry;
-  setRoute: (route: RouteEntry) => void;
-};
+import { render } from './render';
+import { RouteEntryList, Router } from './Router';
 
 const Info: ViewComponent = (): View => {
   return <div data-testid="info" />;
@@ -40,27 +31,11 @@ const routes: RouteEntryList = [
   },
 ];
 
-type Props = {
-  routes: RouteEntryList;
-};
-
-const Router: ViewComponent<Props> = ({ routes }: Props): View => {
-  const current = routes.find((r) => r.path === '/');
-
-  if (!current) return <div data-testid="default-root" />;
-
-  return current.goTo;
-};
-
-describe('router', () => {
-  it('routes to default root url initially if no roots provided', () => {
-    const container = render(<Router routes={[]} />);
-
-    expect(queryByTestId(container, 'root-default')).toBeTruthy();
-  });
-
+describe('<Router />', () => {
   it('routes to root url initially', () => {
-    const container = render(<Router routes={routes} />);
+    const routeState = new SimpleState(routes[2]);
+
+    const container = render(<Router routeState={routeState} />);
 
     expect(queryByTestId(container, 'root')).toBeTruthy();
     expect(queryByTestId(container, 'info')).toBeFalsy();
@@ -68,14 +43,11 @@ describe('router', () => {
   });
 
   it('routes to about page', () => {
-    const router = <Router routes={routes} />;
+    const routeState = new SimpleState(routes[2]);
+    const router = <Router routeState={routeState} />;
     const container = render(router);
 
-    expect(queryByTestId(container, 'root')).toBeTruthy();
-    expect(queryByTestId(container, 'about')).toBeFalsy();
-    expect(queryByTestId(container, 'info')).toBeFalsy();
-
-    console.log(router.state);
+    routeState.set(routes[1]);
 
     expect(queryByTestId(container, 'root')).toBeFalsy();
     expect(queryByTestId(container, 'about')).toBeTruthy();

@@ -4,6 +4,6 @@ export interface View {
   render(): Element;
 }
 
-export interface ViewComponent<Props = { states?: State[] }> {
+export interface ViewComponent<Props = {}> {
   (props: Props, listener: StateListener): View;
 }

@@ -7,16 +7,11 @@ type Tag = keyof JSX.IntrinsicElements | ViewComponent;
 
 const create = (
   tag: Tag,
-  attributes: JSX.StateFullIntrinsicPropTypes,
+  attributes: JSX.IntrinsicPropTypes,
   ...children: ChildrenTypes[]
 ): View => {
   if (typeof tag === 'function') {
-    if (attributes?.states) {
-      const { states, ...other } = attributes;
-      return new FunctionView(tag, new Children(children), other, states);
-    } else {
-      return new FunctionView(tag, new Children(children), attributes, []);
-    }
+    return new FunctionView(tag, new Children(children), attributes);
   }
   return new HtmlView(tag, new Children(children), attributes);
 };

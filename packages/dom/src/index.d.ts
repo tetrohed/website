@@ -1,8 +1,9 @@
 import { State } from './State';
+import SimpleState from './SimpleState';
 import dom from './dom';
 
 export { View, ViewComponent } from './View';
-export { State };
+export { State, SimpleState };
 
 export default dom;
 
@@ -27,10 +28,6 @@ declare global {
     };
 
     interface IntrinsicPropTypes extends EventListenerMap, Attribute {}
-
-    interface StateFullIntrinsicPropTypes extends IntrinsicPropTypes {
-      states?: State[];
-    }
 
     interface IntrinsicElements {
       p: IntrinsicPropTypes;

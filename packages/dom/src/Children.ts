@@ -15,17 +15,11 @@ export default class Children {
     this.children_ = children;
   }
 
-  asText = (): string => {
-    const element = document.createElement('div');
-    element.appendChild(this.asDocumentFragment());
-    return element.innerHTML;
-  };
-
-  asDocumentFragment = (): DocumentFragment => {
+  public asDocumentFragment(): DocumentFragment {
     return this.getFragment(this.children_);
-  };
+  }
 
-  private getFragment = (children: ChildrenTypes[]): DocumentFragment => {
+  private getFragment(children: ChildrenTypes[]): DocumentFragment {
     const fragments = document.createDocumentFragment();
     children.forEach((child) => {
       if (child instanceof HTMLElement) {
@@ -53,7 +47,7 @@ export default class Children {
       }
     });
     return fragments;
-  };
+  }
 
   private readonly children_: ChildrenTypes[];
 }

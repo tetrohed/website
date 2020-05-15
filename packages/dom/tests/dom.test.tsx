@@ -1,11 +1,12 @@
 import { getByTestId, fireEvent } from '@testing-library/dom';
 import '@testing-library/jest-dom/extend-expect';
 import { render as domRender } from '../src/render';
-import StateFactory, { State, StateListener } from '../src/State';
-import { View } from '../src';
+import { StateListener } from '../src/State';
+import SimpleState from '../src/SimpleState';
+import { View } from '../src/main';
 
 type PropsWithState = {
-  states: State[];
+  states: SimpleState<number>[];
 };
 
 describe('dom', () => {
@@ -218,7 +219,7 @@ describe('dom', () => {
       );
     };
 
-    const state = new StateFactory().create();
+    const state = new SimpleState(0);
 
     const container = domRender(<FunctionalComponent states={[state]} />);
 
@@ -262,8 +263,8 @@ describe('dom', () => {
       );
     };
 
-    const state1 = new StateFactory().create();
-    const state2 = new StateFactory().create();
+    const state1 = new SimpleState(0);
+    const state2 = new SimpleState(0);
 
     const container = domRender(
       <FunctionalComponent states={[state1, state2]} />
@@ -311,7 +312,7 @@ describe('dom', () => {
       return <Child states={states}>{'parentState' + clickState.get()}</Child>;
     };
 
-    const state = new StateFactory().create();
+    const state = new SimpleState(0);
 
     const container = domRender(<Parent states={[state]} />);
 
@@ -367,7 +368,7 @@ describe('dom', () => {
       );
     };
 
-    const state = new StateFactory().create();
+    const state = new SimpleState(0);
 
     const container = domRender(
       <div>
@@ -428,7 +429,7 @@ describe('dom', () => {
       return <Child states={states} />;
     };
 
-    const state = new StateFactory().create();
+    const state = new SimpleState(0);
 
     const container = domRender(<Parent states={[state]} />);
 
@@ -476,7 +477,7 @@ describe('dom', () => {
       return <Child states={states} />;
     };
 
-    const state = new StateFactory().create();
+    const state = new SimpleState(0);
 
     const container = domRender(<Parent states={[state]} />);
 

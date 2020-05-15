@@ -5,7 +5,7 @@ const autoprefixer = require('autoprefixer');
 
 const baseConfig = () => {
   return {
-    entry: ['./index.scss', './src/index.ts'],
+    entry: ['./index.scss', './src/index.tsx'],
     output: {
       filename: 'index.js',
       path: path.resolve(__dirname, './webpackBuild'),
