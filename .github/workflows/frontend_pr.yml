@@ -3,8 +3,8 @@ name: frontend
 on:
   pull_request:
     paths:
-      - 'frontend/**'
-      - '.github/workflows/frontend_pr.yml'
+    - 'frontend/**'
+    - '.github/workflows/frontend_pr.yml'
 
 jobs:
   build-test:

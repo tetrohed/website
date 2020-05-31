@@ -3,8 +3,9 @@ name: backend
 on:
   pull_request:
     paths:
-      - 'backend/**'
-      - '.github/workflows/backend_pr.yml'
+    - 'backend/**'
+    - '.github/workflows/backend_pr.yml'
+
 jobs:
   build-test:
 
