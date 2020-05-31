@@ -14,7 +14,8 @@ const dbAdmin = new DatabaseAdmin(database, adminOptions);
 describe('database', () => {
   beforeAll(async () => {
     await dbAdmin.addDb('test_db');
-  });
+    // high timeout value to make sure the db is up and running in ci
+  }, 60000);
   afterAll(async () => {
     await dbAdmin.dropDb('test_db');
   });

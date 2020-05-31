@@ -8,7 +8,7 @@ export default class DatabaseAdmin {
   }
 
   public async addDb(name: string): Promise<void> {
-    const connection: mysql.Connection = await this.database_.connect(
+    const connection: mysql.Connection = await this.database_.connectRetry(
       this.options_
     );
     return new Promise<void>((resolve, reject) => {
@@ -26,7 +26,7 @@ export default class DatabaseAdmin {
   }
 
   public async dropDb(name: string): Promise<void> {
-    const connection: mysql.Connection = await this.database_.connect(
+    const connection: mysql.Connection = await this.database_.connectRetry(
       this.options_
     );
     return new Promise<void>((resolve, reject) => {
