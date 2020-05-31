@@ -7,7 +7,6 @@ export type Options = {
   port: number;
 };
 export default class Database {
-  constructor() {}
   public connect(options: Options): Promise<mysql.Connection> {
     const connection = mysql.createConnection(options);
 

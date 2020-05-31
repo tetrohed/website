@@ -1,0 +1,28 @@
+name: backend
+
+on:
+  pull_request:
+    paths:
+      - 'backend/'
+
+jobs:
+  build-test:
+
+    runs-on: ubuntu-latest
+    env:
+      backend-working-dir: ./backend
+
+    strategy:
+      matrix:
+        node-version: [12.x]
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - run: yarn install --frozen-lockfile
+      working-directory: ${{env.backend-working-dir}}
+    - run: yarn test:coverage
+      working-directory: ${{env.backend-working-dir}}

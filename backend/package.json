@@ -6,6 +6,11 @@
   "repository": "git@github.com:tetrohed/website.git",
   "author": "armin jazi",
   "license": "MIT",
+  "scripts": {
+    "lint": "eslint . --ext .ts,.tsx",
+    "test:unit": "jest",
+    "test:coverage": "jest --coverage"
+  },
   "devDependencies": {
     "jest": "^26.0.1"
   },
