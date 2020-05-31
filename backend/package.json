@@ -1,0 +1,16 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "description": "backend of my armin jazi's website",
+  "repository": "git@github.com:tetrohed/website.git",
+  "author": "armin jazi",
+  "license": "MIT",
+  "devDependencies": {
+    "jest": "^26.0.1"
+  },
+  "dependencies": {
+    "@types/mysql": "^2.15.13",
+    "mysql": "^2.18.1"
+  }
+}

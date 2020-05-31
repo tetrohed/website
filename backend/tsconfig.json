@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "ES2019",
+    "allowJs": false,
+    "strict": true,
+    "isolatedModules": false,
+    "esModuleInterop": true,
+    "downlevelIteration": true,
+    "resolveJsonModule": true,
+    "outDir": "tsBuild",
+    "jsx": "preserve",
+    "lib": ["DOM", "ES2016"],
+    "importsNotUsedAsValues": "preserve"
+  }
+}

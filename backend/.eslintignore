@@ -1,0 +1,5 @@
+bin
+tsBuild
+coverage
+babel.config.js
+dist
