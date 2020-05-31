@@ -1,12 +1,12 @@
-import { getByTestId, fireEvent } from '@testing-library/dom';
-import { render } from '@utils/render';
+import { getByTestId, getByText, fireEvent } from '@testing-library/dom';
+import { render } from './render';
 import { Button } from './Button';
 
 describe('<Button />', () => {
   it('renders with text content', () => {
-    const container = render(<Button textContent="test" />);
+    const container = render(<Button textContent="testtextcontent" />);
 
-    expect(getByTestId(container, 'button')).toHaveTextContent('test');
+    expect(getByText(container, 'testtextcontent')).toBeTruthy();
   });
 
   it('calls onClick handler', () => {
@@ -17,7 +17,7 @@ describe('<Button />', () => {
     );
 
     fireEvent(
-      getByTestId(container, 'button'),
+      getByTestId(container, 'button-test'),
       new MouseEvent('click', {
         bubbles: true,
         cancelable: true,
@@ -31,7 +31,7 @@ describe('<Button />', () => {
     const container = render(<Button textContent="test" />);
 
     fireEvent(
-      getByTestId(container, 'button'),
+      getByTestId(container, 'button-test'),
       new MouseEvent('click', {
         bubbles: true,
         cancelable: true,

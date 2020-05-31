@@ -1,4 +1,4 @@
-import { render } from '@utils/render';
+import { render } from './render';
 import { getByTestId, fireEvent } from '@testing-library/dom';
 import { Navigation, NavigationItem } from './Navigation';
 

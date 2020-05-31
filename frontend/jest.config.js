@@ -5,7 +5,6 @@ module.exports = {
   ],
   moduleNameMapper: {
     '\\.(css|less|sass|scss)$': '<rootDir>/__mocks__/styleMock.ts',
-    '@utils/(.*)': '<rootDir>/../utils/$1',
   },
   testMatch: ['<rootDir>/src/*.test.*'],
 };

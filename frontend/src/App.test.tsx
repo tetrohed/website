@@ -1,7 +1,7 @@
 import { getByTestId } from '@testing-library/dom';
-import { render } from '@utils/render';
 
 import { App } from './App';
+import { render } from './render';
 
 describe('app', function () {
   it('renders without crashing', function () {
