@@ -4,7 +4,7 @@ on:
   pull_request:
     paths:
       - 'backend/**'
-      - '.github/backend_pr.yml'
+      - '.github/workflows/backend_pr.yml'
 jobs:
   build-test:
 

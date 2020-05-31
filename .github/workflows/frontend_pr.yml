@@ -4,7 +4,7 @@ on:
   pull_request:
     paths:
       - 'frontend/**'
-      - '.github/frontend_pr.yml'
+      - '.github/workflows/frontend_pr.yml'
 
 jobs:
   build-test:
