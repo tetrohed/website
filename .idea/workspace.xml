@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a1516620-ad20-48e0-97b4-76c9f05f3a83" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/backend/jest.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.github/workflows/backend_pr.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/backend_pr.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/Database.test.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/Database.test.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/Database.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/Database.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/DatabaseAdmin.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/DatabaseAdmin.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/workflows/frontend_release.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/frontend_release.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -145,7 +140,7 @@
       <workItem from="1589875417633" duration="37000" />
       <workItem from="1590043756781" duration="30000" />
       <workItem from="1590915954917" duration="65000" />
-      <workItem from="1590922367358" duration="3698000" />
+      <workItem from="1590922367358" duration="4032000" />
     </task>
     <task id="LOCAL-00001" summary="Fix workflow">
       <created>1589027184557</created>
