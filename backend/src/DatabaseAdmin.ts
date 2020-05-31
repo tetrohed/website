@@ -1,48 +1,51 @@
-import Database, { Options } from './Database';
-import mysql from 'mysql';
+import DatabaseConnection, { Options } from './DatabaseConnection';
+
+type OrmType = 'TEXT' | 'INT';
+type Type = string | number;
+
+export interface Column<O extends OrmType, T extends Type> {
+  name: string;
+  dataType: O;
+  defaultValue?: T;
+  size?: number;
+  nullability?: 'NOT NULL' | 'UNIQUE' | 'CHECK';
+  autoIncrement?: boolean;
+  primaryKey?: boolean;
+}
+
+export type SqlColumn = Column<'TEXT', string> | Column<'INT', number>;
 
 export default class DatabaseAdmin {
-  constructor(database: Database, options: Options) {
+  constructor(database: DatabaseConnection) {
     this.database_ = database;
-    this.options_ = options;
   }
 
   public async addDb(name: string): Promise<void> {
-    const connection: mysql.Connection = await this.database_.connectRetry(
-      this.options_
-    );
-    return new Promise<void>((resolve, reject) => {
-      connection.query(`CREATE DATABASE ${name}`, function (error, result) {
-        if (error) reject(error);
-        else {
-          console.log('Database created', result);
-          connection.end((endError) => {
-            if (endError) reject(endError);
-            else resolve();
-          });
-        }
-      });
-    });
+    return this.database_.raw(`CREATE DATABASE ${name}`);
+  }
+
+  public async addTable(
+    toDb: string,
+    name: string,
+    columns: SqlColumn[]
+  ): Promise<void> {
+    const sql =
+      `CREATE TABLE IF NOT EXISTS ${name} (` +
+      columns.map(
+        (c) =>
+          `${c.name} ${c.dataType}${c.size ? `(${c.size})` : ''} ${
+            c.defaultValue ? c.defaultValue : ''
+          } ${c.autoIncrement ? 'AUTO_INCREMENT' : ''} ${
+            c.primaryKey ? 'PRIMARY KEY' : ''
+          }`
+      ) +
+      ');';
+    return this.database_.raw(sql, toDb);
   }
 
   public async dropDb(name: string): Promise<void> {
-    const connection: mysql.Connection = await this.database_.connectRetry(
-      this.options_
-    );
-    return new Promise<void>((resolve, reject) => {
-      connection.query(`DROP DATABASE ${name}`, function (error, result) {
-        if (error) reject(error);
-        else {
-          console.log('Database deleted', result);
-          connection.end((endError) => {
-            if (endError) reject(endError);
-            else resolve();
-          });
-        }
-      });
-    });
+    return this.database_.raw(`DROP DATABASE ${name}`);
   }
 
-  private database_: Database;
-  private options_: Options;
+  private database_: DatabaseConnection;
 }

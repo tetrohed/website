@@ -1,5 +1,6 @@
-import Database from './Database';
+import DatabaseConnection from './DatabaseConnection';
 import DatabaseAdmin from './DatabaseAdmin';
+import BlogEntry from './BlogEntry';
 
 const adminOptions = {
   host: 'localhost',
@@ -8,30 +9,47 @@ const adminOptions = {
   port: 6603,
 };
 
-const database = new Database();
-const dbAdmin = new DatabaseAdmin(database, adminOptions);
+const databaseConnection = new DatabaseConnection(adminOptions);
+const dbAdmin = new DatabaseAdmin(databaseConnection);
 
-describe('database', () => {
+describe('BlogEntry', () => {
   beforeAll(async () => {
     await dbAdmin.addDb('test_db');
+    await dbAdmin.addTable('test_db', 'BlogEntry', [
+      {
+        name: 'Title',
+        dataType: 'TEXT' as const,
+        size: 255,
+      },
+      {
+        name: 'id',
+        dataType: 'INT' as const,
+        autoIncrement: true,
+        primaryKey: true,
+      },
+      {
+        name: 'Content',
+        dataType: 'TEXT' as const,
+      },
+    ]);
     // high timeout value to make sure the db is up and running in ci
   }, 60000);
   afterAll(async () => {
     await dbAdmin.dropDb('test_db');
   });
-  it('constructs', () => {
-    const database = new Database();
-    expect(database).toBeTruthy();
-  });
-  it('connects', async () => {
-    const database = new Database();
-    const connection = await database.connect(adminOptions);
-    await expect(connection).toBeTruthy();
-    return new Promise((resolve, reject) => {
-      connection.end((error) => {
-        if (error) reject(error);
-        else resolve();
-      });
-    });
+  it('inserts rows into blog entry and queries those rows', async () => {
+    const blogEntry = new BlogEntry(databaseConnection, 'BlogEntry');
+    await blogEntry.insert(
+      {
+        title: 'this is vanilla mysql',
+        content: 'and it works',
+      },
+      'test_db'
+    );
+
+    const allBlogEntries = await blogEntry.getAll('test_db');
+    expect(allBlogEntries).toEqual([
+      { Content: 'and it works', Title: 'this is vanilla mysql', id: 1 },
+    ]);
   });
 });
