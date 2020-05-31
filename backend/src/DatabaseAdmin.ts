@@ -1,4 +1,4 @@
-import DatabaseConnection, { Options } from './DatabaseConnection';
+import DatabaseConnection from './DatabaseConnection';
 
 type OrmType = 'TEXT' | 'INT';
 type Type = string | number;
