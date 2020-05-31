@@ -12,6 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       frontend-working-dir: ./frontend
+      domlib-working-dir: ./packages/dom
 
     strategy:
       matrix:
@@ -24,5 +25,7 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - run: yarn install --frozen-lockfile
+    - run: yarn run build
+      working-directory: ${{env.domlib-working-dir}}
     - run: yarn test:coverage
       working-directory: ${{env.frontend-working-dir}}
