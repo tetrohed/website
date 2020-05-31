@@ -4,7 +4,7 @@ on:
   pull_request:
     paths:
       - 'backend/**'
-      - '.github/**'
+      - '.github/backend_pr.yml'
 jobs:
   build-test:
 
@@ -24,5 +24,9 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - run: yarn install --frozen-lockfile
       working-directory: ${{env.backend-working-dir}}
+    - name: spin up test environment
+      run: docker-compose -f ${{env.backend-working-dir}}/docker-compose.test.yml up -d
+    - name: wait for test environment
+      run: curl --retry 10 --retry-connrefused http://localhost:6603/ --output curl.output
     - run: yarn test:coverage
       working-directory: ${{env.backend-working-dir}}

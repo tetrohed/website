@@ -3,6 +3,8 @@ name: frontend
 on:
   push:
     branches: [ master ]
+      paths:
+      - 'frontend/**'
 
 jobs:
   build-test:
@@ -21,6 +23,7 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
+    - run: yarn install --frozen-lockfile
     - run: yarn install --frozen-lockfile
       working-directory: ${{env.frontend-working-dir}}
     - run: yarn test:coverage
