@@ -3,7 +3,8 @@ name: frontend
 on:
   pull_request:
     paths:
-      - 'frontend/'
+      - 'frontend/**'
+      - '.github/**'
 
 jobs:
   build-test:

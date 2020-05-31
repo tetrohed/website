@@ -3,8 +3,8 @@ name: backend
 on:
   pull_request:
     paths:
-      - 'backend/'
-
+      - 'backend/**'
+      - '.github/**'
 jobs:
   build-test:
 
