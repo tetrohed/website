@@ -1,5 +1,3 @@
-import DatabaseConnection, { Options } from './DatabaseConnection';
-import DatabaseAdmin from './DatabaseAdmin';
 import { databaseConfig } from './Environment';
 import Fixture from './Fixture';
 
