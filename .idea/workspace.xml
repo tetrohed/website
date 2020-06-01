@@ -2,16 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a1516620-ad20-48e0-97b4-76c9f05f3a83" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/backend/.idea/jsLibraryMappings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/build.sh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/BlogEntryService.test.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/BlogEntryService.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/common/src/mocked.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/nodemon.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/Environment.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/addFixtures.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/cleanFixtures.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/backend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/BlogEntry.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/BlogEntry.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/Database.test.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/BlogEntry.test.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/BlogEntry.test.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/BlogEntry.test.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -166,7 +164,7 @@
       <workItem from="1590043756781" duration="30000" />
       <workItem from="1590915954917" duration="65000" />
       <workItem from="1590922367358" duration="6374000" />
-      <workItem from="1591023724437" duration="1295000" />
+      <workItem from="1591023724437" duration="1671000" />
     </task>
     <task id="LOCAL-00001" summary="Fix workflow">
       <created>1589027184557</created>

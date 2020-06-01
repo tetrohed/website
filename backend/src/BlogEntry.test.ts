@@ -1,52 +1,40 @@
-import DatabaseConnection from './DatabaseConnection';
-import DatabaseAdmin from './DatabaseAdmin';
 import BlogEntry from './BlogEntry';
+import DatabaseConnection from './DatabaseConnection';
+import { databaseConfig } from './Environment';
 
-const adminOptions = {
-  host: 'localhost',
-  user: 'root',
-  password: 'testpassword',
-  port: 6603,
-};
-
-const databaseConnection = new DatabaseConnection(adminOptions);
-const dbAdmin = new DatabaseAdmin(databaseConnection);
+const databaseConnection = new DatabaseConnection(databaseConfig);
 
 describe('BlogEntry', () => {
   beforeAll(async () => {
-    await dbAdmin.addDb('test_db');
-    await dbAdmin.addTable('test_db', 'BlogEntry', [
-      {
-        name: 'Title',
-        dataType: 'TEXT' as const,
-        size: 255,
-      },
-      {
-        name: 'id',
-        dataType: 'INT' as const,
-        autoIncrement: true,
-        primaryKey: true,
-      },
-      {
-        name: 'Content',
-        dataType: 'TEXT' as const,
-      },
-    ]);
+    await import('./addFixtures');
     // high timeout value to make sure the db is up and running in ci
   }, 60000);
   afterAll(async () => {
-    await dbAdmin.dropDb('test_db');
+    await import('./cleanFixtures');
   });
   it('inserts rows into blog entry and queries those rows', async () => {
     const blogEntry = new BlogEntry(databaseConnection, 'BlogEntry', 'test_db');
-    await blogEntry.insert({
-      title: 'this is vanilla mysql',
-      content: 'and it works',
-    });
 
     const allBlogEntries = await blogEntry.getAll();
-    expect(allBlogEntries).toEqual([
-      { Content: 'and it works', Title: 'this is vanilla mysql', id: 1 },
-    ]);
+
+    expect(allBlogEntries).toEqual(
+      expect.arrayContaining([
+        {
+          content: 'depends',
+          title: 'should you use frameworks',
+          id: expect.any(Number),
+        },
+        {
+          content: 'and it works',
+          title: 'this is vanilla mysql',
+          id: expect.any(Number),
+        },
+        {
+          content: 'if you have time and resources',
+          title: 'should you make everything yourself',
+          id: expect.any(Number),
+        },
+      ])
+    );
   });
 });
