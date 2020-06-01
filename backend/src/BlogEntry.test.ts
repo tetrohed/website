@@ -38,16 +38,13 @@ describe('BlogEntry', () => {
     await dbAdmin.dropDb('test_db');
   });
   it('inserts rows into blog entry and queries those rows', async () => {
-    const blogEntry = new BlogEntry(databaseConnection, 'BlogEntry');
-    await blogEntry.insert(
-      {
-        title: 'this is vanilla mysql',
-        content: 'and it works',
-      },
-      'test_db'
-    );
+    const blogEntry = new BlogEntry(databaseConnection, 'BlogEntry', 'test_db');
+    await blogEntry.insert({
+      title: 'this is vanilla mysql',
+      content: 'and it works',
+    });
 
-    const allBlogEntries = await blogEntry.getAll('test_db');
+    const allBlogEntries = await blogEntry.getAll();
     expect(allBlogEntries).toEqual([
       { Content: 'and it works', Title: 'this is vanilla mysql', id: 1 },
     ]);

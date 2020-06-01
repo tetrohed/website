@@ -9,13 +9,18 @@
   "scripts": {
     "lint": "eslint . --ext .ts,.tsx",
     "test:unit": "jest",
-    "test:coverage": "jest --coverage"
+    "test:coverage": "jest --coverage",
+    "build:js": "./build.sh",
+    "start:js": "yarn run build:js && node ./lib/index.js"
   },
   "devDependencies": {
+    "@types/express": "^4.17.6",
     "jest": "^26.0.1"
   },
   "dependencies": {
     "@types/mysql": "^2.15.13",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
     "mysql": "^2.18.1"
   }
 }

@@ -1,0 +1,10 @@
+{
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "name": "@arminjazi/common",
+  "description": "common scripts used for projects",
+  "files": [
+    "src/mocked.ts"
+  ]
+}
