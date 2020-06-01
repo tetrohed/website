@@ -1,15 +1,10 @@
 import DatabaseConnection, { Options } from './DatabaseConnection';
 import DatabaseAdmin from './DatabaseAdmin';
 import { databaseConfig } from './Environment';
+import Fixture from './Fixture';
 
-const cleanFixtures = async (options: Options): Promise<void> => {
-  const databaseConnection = new DatabaseConnection(options);
-  const dbAdmin = new DatabaseAdmin(databaseConnection);
-
-  await dbAdmin.dropDb('test_db');
-};
-
-cleanFixtures(databaseConfig)
+new Fixture(databaseConfig)
+  .clean()
   .then(() => {
     console.log('cleaned fixtures');
     return '';

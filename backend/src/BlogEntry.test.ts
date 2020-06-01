@@ -1,16 +1,18 @@
 import BlogEntry from './BlogEntry';
 import DatabaseConnection from './DatabaseConnection';
 import { databaseConfig } from './Environment';
+import Fixture from './Fixture';
 
 const databaseConnection = new DatabaseConnection(databaseConfig);
+const fixtures = new Fixture(databaseConfig);
 
 describe('BlogEntry', () => {
   beforeAll(async () => {
-    await import('./addFixtures');
+    await fixtures.setup();
     // high timeout value to make sure the db is up and running in ci
   }, 60000);
   afterAll(async () => {
-    await import('./cleanFixtures');
+    await fixtures.clean();
   });
   it('inserts rows into blog entry and queries those rows', async () => {
     const blogEntry = new BlogEntry(databaseConnection, 'BlogEntry', 'test_db');
