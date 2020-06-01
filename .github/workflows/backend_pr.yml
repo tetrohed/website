@@ -30,4 +30,11 @@ jobs:
     - name: spin up test environment
       run: docker-compose -f ${{env.backend-working-dir}}/docker-compose.test.yml up -d
     - run: yarn test:coverage
+      env:
+        DATABASE_ADDRESS: localhost
+        DATABASE_USER: root
+        DATABASE_PASSWORD: testpassword
+        DATABASE_PORT: 6603
+        SERVICE_PORT: 3001
+        DATABASE_NAME: test_db
       working-directory: ${{env.backend-working-dir}}

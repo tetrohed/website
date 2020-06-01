@@ -18,7 +18,10 @@ export default class implements BlogEntryService {
     this.blogEntry_ = blogEntry;
   }
 
-  public async get(request: ServiceRequest, response: ServiceResponse): void {
+  public async get(
+    request: ServiceRequest,
+    response: ServiceResponse
+  ): Promise<void> {
     try {
       const blogValues: BlogValues[] = await this.blogEntry_.getAll();
 
