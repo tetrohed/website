@@ -1,6 +1,8 @@
 import { BlogEntry, BlogValues } from './BlogEntry';
 
-export interface ServiceRequest {}
+export interface ServiceRequest {
+  body: string;
+}
 
 export interface ServiceResponse {
   status: (code: number) => ServiceResponse;
