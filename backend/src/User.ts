@@ -1,14 +1,14 @@
 import DatabaseConnection from './DatabaseConnection';
 import Model from './Model';
 
-export interface BlogValues {
+export interface UserValues {
   id?: number;
-  title: string;
-  content: string;
+  userName: string;
+  password: string;
 }
 
-export default class extends Model<BlogValues> {
+export default class extends Model<UserValues> {
   constructor(databaseConnection: DatabaseConnection, db: string) {
-    super(databaseConnection, db, 'BlogEntry');
+    super(databaseConnection, db, 'User');
   }
 }

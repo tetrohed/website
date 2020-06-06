@@ -1,12 +1,12 @@
-import BlogEntry from './BlogEntry';
 import DatabaseConnection from './DatabaseConnection';
 import { databaseConfig } from './Environment';
 import Fixture from './Fixture';
+import User from './User';
 
 const databaseConnection = new DatabaseConnection(databaseConfig);
 const fixtures = new Fixture(databaseConfig);
 
-describe('BlogEntry', () => {
+describe('User', () => {
   beforeAll(async () => {
     await fixtures.setup();
     // high timeout value to make sure the db is up and running in ci
@@ -14,26 +14,26 @@ describe('BlogEntry', () => {
   afterAll(async () => {
     await fixtures.clean();
   });
-  it('inserts rows into blog entry and queries those rows', async () => {
-    const blogEntry = new BlogEntry(databaseConnection, databaseConfig.dbName);
+  it('inserts rows into user and queries those users', async () => {
+    const user = new User(databaseConnection, databaseConfig.dbName);
 
-    const allBlogEntries = await blogEntry.getAll();
+    const users = await user.getAll();
 
-    expect(allBlogEntries).toEqual(
+    expect(users).toEqual(
       expect.arrayContaining([
         {
-          content: 'depends',
-          title: 'should you use frameworks',
+          userName: 'arminjazi',
+          password: 'hashedPassword1',
           id: expect.any(Number),
         },
         {
-          content: 'and it works',
-          title: 'this is vanilla mysql',
+          userName: 'arashjazi',
+          password: 'hashedPassword2',
           id: expect.any(Number),
         },
         {
-          content: 'if you have time and resources',
-          title: 'should you make everything yourself',
+          userName: 'joe',
+          password: 'hashedPassword3',
           id: expect.any(Number),
         },
       ])

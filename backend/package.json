@@ -8,7 +8,7 @@
   "license": "MIT",
   "scripts": {
     "lint": "eslint . --ext .ts,.tsx",
-    "test:unit": "jest",
+    "test:unit": "jest --runInBand",
     "test:coverage": "jest --coverage",
     "build:js": "./build.sh",
     "start:js:watch": "nodemon -L --exec yarn run start:js",

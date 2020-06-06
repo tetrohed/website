@@ -1,6 +1,6 @@
 import DatabaseConnection from './DatabaseConnection';
 
-type OrmType = 'TEXT' | 'INT';
+type OrmType = 'TEXT' | 'INT' | 'CHAR';
 type Type = string | number;
 
 export interface Column<O extends OrmType, T extends Type> {
@@ -13,7 +13,10 @@ export interface Column<O extends OrmType, T extends Type> {
   primaryKey?: boolean;
 }
 
-export type SqlColumn = Column<'TEXT', string> | Column<'INT', number>;
+export type SqlColumn =
+  | Column<'TEXT', string>
+  | Column<'INT', number>
+  | Column<'CHAR', number>;
 
 export default class DatabaseAdmin {
   constructor(database: DatabaseConnection) {
