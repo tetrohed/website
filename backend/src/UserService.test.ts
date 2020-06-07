@@ -3,7 +3,7 @@ import { mocked } from '@arminjazi/common';
 
 import { UserValues } from './User';
 import { ServiceRequest, ServiceResponse } from './Service';
-import UserService, { LoginJwt } from './UserService';
+import UserService, { AccessToken, LoginJwt } from './UserService';
 
 const userMock: Model<UserValues> = {
   find: jest.fn(() =>
@@ -28,6 +28,7 @@ const userMock: Model<UserValues> = {
 };
 
 const jwtMock: LoginJwt = {
+  verify: jest.fn(),
   sign: jest.fn(),
 };
 
@@ -35,10 +36,11 @@ describe('UserService', function () {
   it('Login', async () => {
     const userService = new UserService(userMock, jwtMock);
 
-    const requestMock: ServiceRequest = {
-      body: '{"user": "armijazi", "password": "cryptic"}',
+    const requestMock: ServiceRequest<UserValues> = {
+      headers: {},
+      body: { userName: 'armijazi', password: 'cryptic' },
     };
-    const responseMock: ServiceResponse = {
+    const responseMock: ServiceResponse<AccessToken | string> = {
       send: jest.fn(),
       status: jest.fn(() => responseMock),
     };
@@ -46,18 +48,19 @@ describe('UserService', function () {
     mocked(jwtMock.sign).mockImplementation(() => '12p8ljkasdlkj9P8');
     await userService.login(requestMock, responseMock);
 
-    expect(responseMock.send).toHaveBeenCalledWith(
-      '{"accessToken":"12p8ljkasdlkj9P8"}'
-    );
+    expect(responseMock.send).toHaveBeenCalledWith({
+      accessToken: '12p8ljkasdlkj9P8',
+    });
   });
 
   it('Login with false credentials', async () => {
     const userService = new UserService(userMock, jwtMock);
 
-    const requestMock: ServiceRequest = {
-      body: '{"user": "arashJazi", "password": "cryptic"}',
+    const requestMock: ServiceRequest<UserValues> = {
+      headers: {},
+      body: { userName: 'armijazi', password: 'cryptic' },
     };
-    const responseMock: ServiceResponse = {
+    const responseMock: ServiceResponse<AccessToken | string> = {
       send: jest.fn(),
       status: jest.fn(() => responseMock),
     };

@@ -12,7 +12,24 @@ export default class {
 
   public sign<T>(object: T): string {
     const { secret, ...other } = this.config_;
-    return jsonwebtoken.sign(JSON.stringify(object), secret, other);
+    let jwt = '';
+
+    try {
+      jwt = jsonwebtoken.sign({ object }, secret, other);
+    } catch (e) {
+      console.error(e);
+      throw e;
+    }
+
+    return jwt;
+  }
+
+  public verify(
+    token: string,
+    callback: (error: Error | null, decoded: object | undefined) => void
+  ): void {
+    const { secret } = this.config_;
+    jsonwebtoken.verify(token, secret, callback);
   }
 
   private readonly config_: Config;

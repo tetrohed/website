@@ -1,61 +1,61 @@
 import { Model } from './Model';
 
-export interface ServiceRequest {
-  body: string;
+export type ServiceRequestHeaders = Record<string, any>;
+
+export interface ServiceRequest<T> {
+  body: T;
+  headers: ServiceRequestHeaders;
 }
 
-export interface ServiceResponse {
-  status: (code: number) => ServiceResponse;
-  send: (value: string) => void;
+export interface ServiceResponse<T> {
+  status: (code: number) => ServiceResponse<T>;
+  send: (value: T) => void;
 }
 
-interface Encoder {
-  encode<T>(data: T | T[]): string;
+export interface ServiceHook<T> {
+  beforePost: (values: T, headers: ServiceRequestHeaders) => Promise<T>;
 }
 
-interface Decoder {
-  decode<T>(data: string): T;
-}
-
-class DefaultEncoder<T> implements Encoder {
-  encode<T>(data: T | T[]): string {
-    return JSON.stringify(data);
-  }
-}
-
-class DefaultDecoder<T> implements Decoder {
-  decode<T>(data: string): T {
-    return JSON.parse(data);
+export class DefaultHook<T> implements ServiceHook<T> {
+  public beforePost(values: T): Promise<T> {
+    return new Promise((resolve) => resolve(values));
   }
 }
 
 export default class Service<T> {
-  constructor(
-    user: Model<T>,
-    encoder: Encoder = new DefaultEncoder(),
-    decoder: Decoder = new DefaultDecoder()
-  ) {
+  constructor(user: Model<T>, hook: ServiceHook<T> = new DefaultHook()) {
     this.model_ = user;
-    this.encoder_ = encoder;
-    this.decoder_ = decoder;
+    this.hook_ = hook;
   }
 
   public async get(
-    request: ServiceRequest,
-    response: ServiceResponse
+    request: ServiceRequest<T>,
+    response: ServiceResponse<T[]>
   ): Promise<void> {
     try {
       const values = await this.model_.getAll();
 
-      response.status(200).send(this.encoder_.encode(values));
+      response.status(200).send(values);
     } catch (e) {
       response.status(404).send(e.message);
     }
   }
 
-  public readonly model_: Model<T>;
+  async post(
+    request: ServiceRequest<T>,
+    response: ServiceResponse<string>
+  ): Promise<void> {
+    try {
+      const headers = request.headers;
+      const hookValues = await this.hook_.beforePost(request.body, headers);
+      await this.model_.insert(hookValues);
+      response.status(200).send('Blog entry added');
+    } catch (e) {
+      response.status(404).send(e.message);
+    }
+  }
 
-  public readonly encoder_: Encoder;
+  protected readonly model_: Model<T>;
 
-  public readonly decoder_: Decoder;
+  private hook_: ServiceHook<T>;
 }

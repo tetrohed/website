@@ -34,7 +34,7 @@ export default class DatabaseConnection {
     }
   }
 
-  public async raw(query: string, db?: string): Promise<never> {
+  public async raw(query: string, db?: string): Promise<any> {
     const connection: mysql.Connection = await this.connectRetry(
       db
         ? {
