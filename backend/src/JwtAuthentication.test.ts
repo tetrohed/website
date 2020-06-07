@@ -35,4 +35,15 @@ describe('JwtAuthentication', function () {
       })
     ).rejects.toEqual(new Error('some error'));
   });
+
+  it('rejects if there is no authorization header', async () => {
+    const jwtAuthenticate = new JwtAuthentication(jwtMock);
+
+    mocked(jwtMock.verify).mockImplementation((token, callback) => {
+      callback();
+    });
+    await expect(jwtAuthenticate.authenticate({})).rejects.toEqual(
+      new Error('missing authorization token')
+    );
+  });
 });
