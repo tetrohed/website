@@ -2,21 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a1516620-ad20-48e0-97b4-76c9f05f3a83" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/backend/src/JsonWebToken.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/Service.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/UserService.test.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/UserService.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/common/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/workflows/backend_pr.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/backend_pr.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/workflows/frontend_pr.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/frontend_pr.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/workflows/frontend_release.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/frontend_release.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/backend/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/jest.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/jest.config.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/backend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/BlogEntryService.test.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/BlogEntryService.test.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/BlogEntryService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/BlogEntryService.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/DatabaseConnection.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/DatabaseConnection.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/Model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/Model.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/common/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/common/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/User.test.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/User.test.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/UserService.test.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/UserService.test.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/UserService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/UserService.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/dom/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/dom/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -172,7 +169,7 @@
       <workItem from="1590922367358" duration="6374000" />
       <workItem from="1591023724437" duration="2389000" />
       <workItem from="1591363041978" duration="351000" />
-      <workItem from="1591519025092" duration="2313000" />
+      <workItem from="1591519025092" duration="2395000" />
     </task>
     <task id="LOCAL-00001" summary="Fix workflow">
       <created>1589027184557</created>

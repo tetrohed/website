@@ -39,4 +39,32 @@ describe('User', () => {
       ])
     );
   });
+
+  it('finds an existing user', async () => {
+    const user = new User(databaseConnection, databaseConfig.dbName);
+
+    const foundUser = await user.find({
+      userName: 'arashjazi',
+      password: 'hashedPassword2',
+    });
+
+    expect(foundUser).toEqual([
+      expect.objectContaining({
+        userName: 'arashjazi',
+        password: 'hashedPassword2',
+        id: expect.any(Number),
+      }),
+    ]);
+  });
+
+  it('does not find non-existing user', async () => {
+    const user = new User(databaseConnection, databaseConfig.dbName);
+
+    const noUsers = await user.find({
+      userName: 'i never registered',
+      password: 'and have no password',
+    });
+
+    expect(noUsers).toEqual([]);
+  });
 });

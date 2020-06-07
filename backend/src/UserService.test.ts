@@ -6,11 +6,15 @@ import { ServiceRequest, ServiceResponse } from './Service';
 import UserService, { LoginJwt } from './UserService';
 
 const userMock: Model<UserValues> = {
-  find: jest.fn(() => ({
-    userName: 'arminjazi',
-    password: 'cryptic',
-    id: 1,
-  })),
+  find: jest.fn(() =>
+    Promise.resolve([
+      {
+        userName: 'arminjazi',
+        password: 'cryptic',
+        id: 1,
+      },
+    ])
+  ),
   getAll: jest.fn(() =>
     Promise.resolve([
       {
@@ -48,7 +52,7 @@ describe('UserService', function () {
   });
 
   it('Login with false credentials', async () => {
-    const userService = new UserService(UserMock, jwtMock);
+    const userService = new UserService(userMock, jwtMock);
 
     const requestMock: ServiceRequest = {
       body: '{"user": "arashJazi", "password": "cryptic"}',
@@ -57,6 +61,8 @@ describe('UserService', function () {
       send: jest.fn(),
       status: jest.fn(() => responseMock),
     };
+
+    mocked(userMock.find).mockImplementation(() => []);
     await userService.login(requestMock, responseMock);
 
     expect(responseMock.send).toHaveBeenCalledWith(

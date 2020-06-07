@@ -18,12 +18,10 @@ export default class extends Service<UserValues> {
   ): Promise<void> {
     const { userName, password } = this.decoder_.decode(request.body);
 
-    const user = this.model_.find((u) => {
-      return u.userName === userName && u.password === password;
-    });
+    const user = await this.model_.find({ userName, password });
 
-    if (user) {
-      const accessToken = this.jwt_.sign(user);
+    if (user.length) {
+      const accessToken = this.jwt_.sign(user[0]);
 
       response.send(
         this.encoder_.encode({

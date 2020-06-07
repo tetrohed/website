@@ -12,6 +12,7 @@
     "build:test:js": "babel tests --out-dir testlib --extensions \".ts,.tsx\" --source-maps inline",
     "lint": "eslint . --ext .ts,.tsx",
     "test:unit": "jest",
+    "type:check": "tsc --noEmit",
     "test:coverage": "jest --coverage"
   },
   "files": [

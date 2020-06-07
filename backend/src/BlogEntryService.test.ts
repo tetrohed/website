@@ -4,6 +4,7 @@ import { BlogValues } from './BlogEntry';
 import BlogEntryService from './BlogEntryService';
 
 const blogEntryMock: Model<BlogValues> = {
+  find: jest.fn(() => Promise.resolve([])),
   getAll: jest.fn(() =>
     Promise.resolve([
       {

@@ -11,6 +11,7 @@
     "start:development": "webpack-dev-server --config webpack.development.config.js",
     "start:production": "node webpackBuild/server.js",
     "lint": "eslint . --ext .ts,.tsx",
+    "type:check": "tsc --noEmit",
     "test:unit": "jest",
     "test:coverage": "jest --coverage"
   },

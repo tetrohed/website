@@ -8,6 +8,7 @@
   "license": "MIT",
   "scripts": {
     "lint": "eslint . --ext .ts,.tsx",
+    "type:check": "tsc --noEmit",
     "test:unit": "jest --runInBand",
     "test:coverage": "jest --coverage",
     "build:js": "./build.sh",

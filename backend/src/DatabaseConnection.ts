@@ -50,10 +50,10 @@ export default class DatabaseConnection {
           reject(error);
         } else {
           resolve(result);
-          connection.end((endError) => {
-            if (endError) reject(endError);
-          });
         }
+        connection.end((endError) => {
+          if (endError) reject(endError);
+        });
       });
     });
   }

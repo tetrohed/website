@@ -27,6 +27,8 @@ jobs:
     - run: yarn install --frozen-lockfile
     - run: yarn lint
       working-directory: ${{env.frontend-working-dir}}
+    - run: yarn type:check
+      working-directory: ${{env.frontend-working-dir}}
     - run: yarn run build
       working-directory: ${{env.domlib-working-dir}}
     - run: yarn test:coverage

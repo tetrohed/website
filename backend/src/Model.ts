@@ -1,13 +1,11 @@
 import DatabaseConnection from './DatabaseConnection';
 
-export type Predicate<T> = (model: T) => boolean;
-
 export interface Model<T> {
   insert(values: T): Promise<void>;
 
   getAll(): Promise<T[]>;
 
-  find(predicate: Predicate<T>): T | null;
+  find(predicate: T): Promise<T[]>;
 }
 
 export default class<T> implements Model<T> {
@@ -37,8 +35,18 @@ export default class<T> implements Model<T> {
     );
   }
 
-  find(predicate: Predicate<T>): T | null {
-    return null;
+  find(object: T): Promise<T[]> {
+    const keys = Object.keys(object);
+    const values = Object.values(object);
+    const conditions = keys.reduce((accumulator, currentKey, index) => {
+      const condition = `${currentKey}='${values[index]}'`;
+      return accumulator !== '' ? `${accumulator} AND ${condition}` : condition;
+    }, '');
+
+    return this.databaseConnection_.raw(
+      `SELECT * from ${this.name_} WHERE ${conditions}`,
+      this.db_
+    );
   }
 
   private databaseConnection_: DatabaseConnection;
