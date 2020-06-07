@@ -1,0 +1,35 @@
+name: frontend
+
+on:
+  pull_request:
+    paths:
+    - 'frontend/**'
+    - '.github/workflows/frontend_pr.yml'
+
+jobs:
+  build-test:
+
+    runs-on: ubuntu-latest
+    env:
+      frontend-working-dir: ./frontend
+      domlib-working-dir: ./packages/dom
+
+    strategy:
+      matrix:
+        node-version: [12.x]
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - run: yarn install --frozen-lockfile
+    - run: yarn lint
+      working-directory: ${{env.frontend-working-dir}}
+    - run: yarn type:check
+      working-directory: ${{env.frontend-working-dir}}
+    - run: yarn run build
+      working-directory: ${{env.domlib-working-dir}}
+    - run: yarn test:coverage
+      working-directory: ${{env.frontend-working-dir}}

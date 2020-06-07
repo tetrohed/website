@@ -1,3 +1,12 @@
+const config = require('../babel.config');
+
 module.exports = {
-  presets: [['@babel/preset-env', { targets: { node: 'current' } }], '@babel/preset-typescript'],
+  ...config,
+  plugins: [
+    [
+      '@arminjazi/babel-plugin-import-jsx-pragma',
+      { scopeVariable: 'dom', source: '@arminjazi/dom' },
+    ],
+    ['@babel/plugin-transform-react-jsx', { pragma: 'dom.create' }],
+  ],
 };

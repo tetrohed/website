@@ -5,7 +5,7 @@ const autoprefixer = require('autoprefixer');
 
 const baseConfig = () => {
   return {
-    entry: ['./index.scss', './src/index.ts'],
+    entry: ['./index.scss', './src/index.tsx'],
     output: {
       filename: 'index.js',
       path: path.resolve(__dirname, './webpackBuild'),
@@ -19,7 +19,7 @@ const baseConfig = () => {
     module: {
       rules: [
         {
-          test: /\.ts?$/,
+          test: /\.tsx?$/,
           loader: 'babel-loader',
           options: {
             rootMode: 'upward',
@@ -55,7 +55,7 @@ const baseConfig = () => {
                 // See https://github.com/webpack-contrib/sass-loader/issues/804
                 webpackImporter: false,
                 sassOptions: {
-                  includePaths: ['./node_modules']
+                  includePaths: ['./node_modules','../node_modules'],
                 },
               }
             }
@@ -64,7 +64,7 @@ const baseConfig = () => {
       ],
     },
     resolve: {
-      extensions: ['.ts', '.js'],
+      extensions: ['.ts', '.js', '.tsx'],
     },
   };
 };

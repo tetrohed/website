@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "esnext",
+    "allowJs": false,
+    "strict": true,
+    "isolatedModules": false,
+    "esModuleInterop": true,
+    "downlevelIteration": true,
+    "resolveJsonModule": true,
+    "outDir": "lib",
+    "jsx": "preserve",
+    "lib": ["ES2016", "dom"],
+    "declaration": true
+  }
+}

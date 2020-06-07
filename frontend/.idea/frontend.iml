@@ -5,6 +5,7 @@
       <excludeFolder url="file://$MODULE_DIR$/.tmp" />
       <excludeFolder url="file://$MODULE_DIR$/temp" />
       <excludeFolder url="file://$MODULE_DIR$/tmp" />
+      <excludeFolder url="file://$MODULE_DIR$/tsBuild" />
       <excludeFolder url="file://$MODULE_DIR$/webpackBuild" />
     </content>
     <orderEntry type="inheritedJdk" />

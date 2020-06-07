@@ -2,36 +2,158 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a1516620-ad20-48e0-97b4-76c9f05f3a83" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.github/workflows/frontend.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/frontend.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/jest.e2e.config.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/BlogEntryHook.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/Integration.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/JwtAuthentication.test.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/JwtAuthentication.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.dockerignore" beforeDir="false" afterPath="$PROJECT_DIR$/backend/.dockerignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.idea/backend.iml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/.idea/backend.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/jest.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/jest.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/backend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/BlogEntryService.test.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/BlogEntryService.test.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/DatabaseConnection.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/DatabaseConnection.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/JsonWebToken.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/JsonWebToken.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/Service.test.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/Service.test.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/Service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/Service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/UserService.test.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/UserService.test.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/UserService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/UserService.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="package.json" />
+        <option value="TypeScript File" />
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="JsFlowSettings">
+    <service-enabled>true</service-enabled>
+    <exe-path />
+    <other-services-enabled>true</other-services-enabled>
+    <auto-save>true</auto-save>
+  </component>
   <component name="ProjectId" id="1bfYmYzIDeAd6i99dkMtRarIOfv" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="add_unversioned_files" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/.github/workflows" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.standard" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.standard" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.standard" value="" />
+    <property name="nodejs.jest.jest_package" value="$PROJECT_DIR$/node_modules/jest" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="prettierjs.PrettierConfiguration.Package" value="$PROJECT_DIR$/node_modules/prettier" />
+    <property name="settings.editor.selected.configurable" value="settings.javascript.linters.eslint" />
+    <property name="ts.external.directory.path" value="$PROJECT_DIR$/node_modules/typescript/lib" />
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/packages/common/src" />
+      <recent name="$PROJECT_DIR$/packages/common" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/.github/workflows" />
+      <recent name="$PROJECT_DIR$/packages/babel-plugin-import-jsx-pragma" />
+      <recent name="$PROJECT_DIR$" />
+    </key>
+  </component>
+  <component name="RunManager" selected="npm.test:coverage">
+    <configuration name="babel-plugin-import-jsx-pragma" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
+      <working-dir value="$PROJECT_DIR$/packages/babel-plugin-import-jsx-pragma" />
+      <envs />
+      <scope-kind value="SUITE" />
+      <test-file value="$PROJECT_DIR$/packages/babel-plugin-import-jsx-pragma/src/index.test.js" />
+      <test-names>
+        <test-name value="babel-plugin-import-jsx-pragma" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="babel-plugin-import-jsx-pragma.adds import for scope variable with custom import" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
+      <working-dir value="$PROJECT_DIR$/packages/babel-plugin-import-jsx-pragma" />
+      <envs />
+      <scope-kind value="TEST" />
+      <test-file value="$PROJECT_DIR$/packages/babel-plugin-import-jsx-pragma/src/index.test.js" />
+      <test-names>
+        <test-name value="babel-plugin-import-jsx-pragma" />
+        <test-name value="adds import for scope variable with custom import" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="database" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
+      <working-dir value="$PROJECT_DIR$/backend" />
+      <envs />
+      <scope-kind value="SUITE" />
+      <test-file value="$PROJECT_DIR$/backend/src/Database.test.ts" />
+      <test-names>
+        <test-name value="database" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="dom.renders jsx" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
+      <working-dir value="$PROJECT_DIR$/frontend" />
+      <envs />
+      <scope-kind value="TEST" />
+      <test-file value="$PROJECT_DIR$/frontend/src/dom.test.tsx" />
+      <test-names>
+        <test-name value="dom" />
+        <test-name value="renders jsx" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="test:coverage" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/frontend/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="test:coverage" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
       <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
+        <item itemvalue="npm.test:coverage" />
+        <item itemvalue="Jest.database" />
+        <item itemvalue="Jest.dom.renders jsx" />
+        <item itemvalue="Jest.babel-plugin-import-jsx-pragma" />
+        <item itemvalue="Jest.babel-plugin-import-jsx-pragma.adds import for scope variable with custom import" />
       </list>
-    </option>
+    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -43,7 +165,18 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1589024774288</updated>
-      <workItem from="1589024775889" duration="2572000" />
+      <workItem from="1589024775889" duration="13168000" />
+      <workItem from="1589199554490" duration="4568000" />
+      <workItem from="1589211647343" duration="1721000" />
+      <workItem from="1589271976428" duration="2167000" />
+      <workItem from="1589553851100" duration="2837000" />
+      <workItem from="1589875417633" duration="37000" />
+      <workItem from="1590043756781" duration="30000" />
+      <workItem from="1590915954917" duration="65000" />
+      <workItem from="1590922367358" duration="6374000" />
+      <workItem from="1591023724437" duration="2389000" />
+      <workItem from="1591363041978" duration="351000" />
+      <workItem from="1591519025092" duration="2936000" />
     </task>
     <task id="LOCAL-00001" summary="Fix workflow">
       <created>1589027184557</created>
@@ -52,11 +185,18 @@
       <option name="project" value="LOCAL" />
       <updated>1589027184557</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Add JSX create factory&#10;Add Babel transform for dom pragma injection&#10;Add yarn">
+      <created>1589204018519</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1589204018519</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
+    <option name="version" value="2" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -68,9 +208,53 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Fix workflow" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix workflow" />
+    <MESSAGE value="Add JSX create factory&#10;Add Babel transform for dom pragma injection&#10;Add yarn" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add JSX create factory&#10;Add Babel transform for dom pragma injection&#10;Add yarn" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="493" y="215" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1589283488689">
+      <screen x="70" y="23" width="1370" height="877" />
+    </state>
+    <state x="493" y="215" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/70.23.1370.877@70.23.1370.877" timestamp="1589283488688" />
+    <state x="332" y="23" key="CommitChangelistDialog2" timestamp="1589204018210">
+      <screen x="70" y="23" width="1370" height="877" />
+    </state>
+    <state x="332" y="23" key="CommitChangelistDialog2/70.23.1370.877@70.23.1370.877" timestamp="1589204018210" />
+    <state width="1419" height="191" key="GridCell.Tab.0.bottom" timestamp="1590944340358">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1419" height="191" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1590944340358" />
+    <state width="1349" height="235" key="GridCell.Tab.0.bottom/70.23.1370.877@70.23.1370.877" timestamp="1589210770541" />
+    <state width="1419" height="191" key="GridCell.Tab.0.center" timestamp="1590944340356">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1419" height="191" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1590944340356" />
+    <state width="1349" height="235" key="GridCell.Tab.0.center/70.23.1370.877@70.23.1370.877" timestamp="1589210770541" />
+    <state width="1419" height="191" key="GridCell.Tab.0.left" timestamp="1590944340355">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1419" height="191" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1590944340355" />
+    <state width="1349" height="235" key="GridCell.Tab.0.left/70.23.1370.877@70.23.1370.877" timestamp="1589210770540" />
+    <state width="1419" height="191" key="GridCell.Tab.0.right" timestamp="1590944340357">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1419" height="191" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1590944340357" />
+    <state width="1349" height="235" key="GridCell.Tab.0.right/70.23.1370.877@70.23.1370.877" timestamp="1589210770541" />
+    <state x="256" y="100" key="SettingsEditor" timestamp="1589200234107">
+      <screen x="70" y="23" width="1370" height="877" />
+    </state>
+    <state x="256" y="100" key="SettingsEditor/70.23.1370.877@70.23.1370.877" timestamp="1589200234107" />
+    <state x="422" y="189" width="596" height="522" key="find.popup" timestamp="1591522077341">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="422" y="189" width="596" height="522" key="find.popup/0.0.1440.900@0.0.1440.900" timestamp="1591522077341" />
+    <state x="385" y="196" width="670" height="676" key="search.everywhere.popup" timestamp="1591522070193">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="385" y="196" width="670" height="676" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1591522070193" />
   </component>
 </project>

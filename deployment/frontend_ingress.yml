@@ -1,0 +1,22 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: ingress
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    cert-manager.io/cluster-issuer: "letsencrypt-prod-site"
+
+spec:
+  tls:
+    - hosts:
+      - arminjazi.com
+      secretName: site-tls
+
+  rules:
+    - host: arminjazi.com
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: frontend-service-loadbalancer
+              servicePort: 80
