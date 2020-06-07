@@ -4,4 +4,5 @@ module.exports = {
     '!src/**/*.{(types),}.(ts)',
   ],
   testMatch: ['<rootDir>/src/*.test.*'],
+  transformIgnorePatterns: ['!@arminjazi/common'],
 };

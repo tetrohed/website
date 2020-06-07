@@ -1,9 +1,13 @@
 import DatabaseConnection from './DatabaseConnection';
 
+export type Predicate<T> = (model: T) => boolean;
+
 export interface Model<T> {
   insert(values: T): Promise<void>;
 
   getAll(): Promise<T[]>;
+
+  find(predicate: Predicate<T>): T | null;
 }
 
 export default class<T> implements Model<T> {
@@ -31,6 +35,10 @@ export default class<T> implements Model<T> {
       `SELECT * from ${this.name_}`,
       this.db_
     );
+  }
+
+  find(predicate: Predicate<T>): T | null {
+    return null;
   }
 
   private databaseConnection_: DatabaseConnection;

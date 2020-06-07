@@ -1,10 +1,9 @@
-import { BlogEntry } from './BlogEntry';
-import BlogEntryApi, {
-  ServiceRequest,
-  ServiceResponse,
-} from './BlogEntryService';
+import { Model } from './Model';
+import { ServiceRequest, ServiceResponse } from './Service';
+import { BlogValues } from './BlogEntry';
+import BlogEntryService from './BlogEntryService';
 
-const blogEntryMock: BlogEntry = {
+const blogEntryMock: Model<BlogValues> = {
   getAll: jest.fn(() =>
     Promise.resolve([
       {
@@ -17,11 +16,11 @@ const blogEntryMock: BlogEntry = {
   insert: jest.fn(),
 };
 
-describe('BlogApi', function () {
+describe('BlogService', function () {
   it('GET', async () => {
-    const blogEntryApi = new BlogEntryApi(blogEntryMock);
+    const blogEntryApi = new BlogEntryService(blogEntryMock);
 
-    const requestMock: ServiceRequest = {};
+    const requestMock: ServiceRequest = { body: '' };
     const responseMock: ServiceResponse = {
       send: jest.fn(),
       status: jest.fn(() => responseMock),
